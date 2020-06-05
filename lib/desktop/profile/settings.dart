@@ -25,36 +25,34 @@ class SettingsState extends State<Settings> {
       child: Padding(
         padding: EdgeInsets.only(left: 52, right: 16, top: 32),
         child: JetRow(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 75,
               child: Column(
                 children: <Widget>[
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 775),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            height: 86,
-                            child: Text('User settings',
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    fontSize: 48, fontFamily: "Roboto")),
-                          ),
-                        ),
-                        Container(
-                          width: 80,
-                          child: Switch(
-                            activeColor: Color(0xff367BF5),
-                            onChanged: (c) {},
-                            value: true,
-                          ),
-                        )
-                      ],
+                  Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 86,
+                        child: Text('User settings',
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 48, fontFamily: "Roboto")),
+                      ),
                     ),
-                  ),
+                    Container(
+                      width: 80,
+                      child: Switch(
+                        activeColor: Color(0xff367BF5),
+                        onChanged: (c) {},
+                        value: true,
+                      ),
+                    )
+                  ],
+                    ),
                   JetExpansionPanel2(
                       headerBuilder: (c, expanded, hovered) {
                         return Text(

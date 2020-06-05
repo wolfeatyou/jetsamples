@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart' as m;
 import 'package:flutter/material.dart';
 import 'package:jetkit/jetkit.dart';
 
@@ -12,7 +11,7 @@ class Account extends StatefulWidget {
 
 class AccountSettingsState3 extends State<Account> {
   var expandedItems = {};
-  var headerColor = m.Color(0xff5E6366);
+  var headerColor = Color(0xff5E6366);
 
   @override
   void initState() {
@@ -23,30 +22,30 @@ class AccountSettingsState3 extends State<Account> {
 
   @override
   Widget build(BuildContext context) {
-    return m.SingleChildScrollView(
-      child: m.Padding(
-                padding: m.EdgeInsets.only(left: 52, right: 16, top: 32),
+    return SingleChildScrollView(
+      child: Padding(
+                padding: EdgeInsets.only(left: 52, right: 16, top: 32),
                 child: JetRow(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children:[
                     Expanded(
                       flex: 75,
-                      child: m.Column(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          m.ConstrainedBox(
-                            constraints:BoxConstraints(
-                                maxWidth: 775
-                            ),
-                            child: Row(
-                              crossAxisAlignment: m.CrossAxisAlignment.start,
+                          JetRow(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [Expanded(
-                                child: m.Container(
+                                child: Container(
                                   height: 86,
-                                  child: m.Text('Account settings', overflow: m.TextOverflow.ellipsis, style: m.TextStyle(fontSize: 48, fontFamily:"Roboto" )),
+                                  child: Text('Account settings', overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 48, fontFamily:"Roboto" )),
                                 ),
                               ),
-                                m.Container(
+                                Container(
                                   width: 80,
-                                  child: m.Switch(
+                                  child: Switch(
                                     activeColor: Color(0xff367BF5),
                                     onChanged: (c){},
                                     value: true,
@@ -54,12 +53,11 @@ class AccountSettingsState3 extends State<Account> {
                                   ),
                                 )],
                             ),
-                          ),
                           JetExpansionPanel2(
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -73,7 +71,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -87,7 +85,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -101,7 +99,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -115,7 +113,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -129,7 +127,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -143,7 +141,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -157,7 +155,7 @@ class AccountSettingsState3 extends State<Account> {
                               headerBuilder: (c, expanded, hovered){
                                 return Text(
                                   'Delivery address & Onhovered state',
-                                  overflow: m.TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       color: (expanded || hovered)? Colors.black : Color(0xff5E6366),
                                       fontFamily: 'Roboto',
@@ -174,11 +172,11 @@ class AccountSettingsState3 extends State<Account> {
                     JaExpanded(
                       minRowWidth: 800,
                       flex: 25,
-                      child: m.Container(
-                        padding: m.EdgeInsets.only(top:26, left:42, right: 0),
-                        child: m.Column(
-                          mainAxisAlignment: m.MainAxisAlignment.start,
-                          children: <m.Widget>[
+                      child: Container(
+                        padding: EdgeInsets.only(top:26, left:42, right: 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
                             MenuList(
                               children: [
                                 MenuListGroup("Settings"),

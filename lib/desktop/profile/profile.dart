@@ -118,14 +118,14 @@ class _ProfileState extends State<Profile> {
                           ),
                           a.MenuItem(
                             "Notifications",
-                            value: "/settings",
+                            value: "/any_list",
                             description: "Email, desctop, mobile",
                             iconData: Icons.notifications,
                             iconColor: Colors.orange,
                           ),
                           a.MenuItem(
                             "Plans",
-                            value: "/account",
+                            value: "/grid_index",
                             description: "Get more satisfaction",
                             iconData: Icons.calendar_today,
                             iconColor: Colors.red,
