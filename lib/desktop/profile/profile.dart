@@ -15,6 +15,7 @@ class _ProfileState extends State<Profile> {
   final GlobalKey<NavigatorState> navigatorKey =
       new GlobalKey<NavigatorState>();
   int idx = 0;
+  dynamic selectedMenuItemValue;
 
   Widget build(BuildContext context) {
     return SingleChildScrollView(

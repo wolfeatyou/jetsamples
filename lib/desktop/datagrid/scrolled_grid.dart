@@ -38,9 +38,9 @@ class _ScrolledGridSampleState extends State<ScrolledGridSample> {
             future: load(),
             builder: (context, snapshot) {
               return Container(
-                height: 550,
+                height: 575,
                 decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Color(0xffE3E5E5))
+                  border: Border(top: BorderSide(width: 1, color: Color(0xffE3E5E5)))
                 ),
                 child: Column(
                     children: [

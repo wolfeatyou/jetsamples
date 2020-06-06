@@ -11,7 +11,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  //final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
   Widget build(BuildContext context) {
     return JetApp(
@@ -22,6 +22,13 @@ class _HomeState extends State<Home> {
             JetToolbar(
               size: 88,
               color: Color(0xff3E4345),
+              onSelectedChanged: (value){
+                print('fff');
+                print(value);
+                if (value != null) {
+                  navigatorKey.currentState.pushNamed(value);
+                }
+              },
               children: [
                 Padding(
                   padding: EdgeInsets.only(top: 10, bottom: 38),
@@ -38,9 +45,9 @@ class _HomeState extends State<Home> {
                     shape: CircleBorder(),
                   ),
                 ),
-                JetToolbarItem(label: "Messages", icon: Icons.message),
+                JetToolbarItem(label: "Messages", icon: Icons.message, value: 'grid_index'),
                 JetToolbarItem(
-                    label: "Groups", icon: Icons.group, selected: true),
+                    label: "Groups", icon: Icons.group, selected: true, value: 'profile',),
                 JetToolbarItem(label: "Tasks", icon: Icons.assignment_turned_in),
                 JetToolbarItem(label: "Sent", icon: Icons.send),
                 JetToolbarItem(label: "Stats", icon: Icons.shop_two),
@@ -49,7 +56,7 @@ class _HomeState extends State<Home> {
             ),
             Expanded(
               child:RouterOutlet(
-                  //navigatorKey: navigatorKey,
+                  navigatorKey: navigatorKey,
                   initialRoute: "/profile",
                   module: HomeTabsModule()
               )
