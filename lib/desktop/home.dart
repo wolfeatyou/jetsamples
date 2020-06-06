@@ -55,10 +55,12 @@ class _HomeState extends State<Home> {
               ],
             ),
             Expanded(
-              child:RouterOutlet(
-                  navigatorKey: navigatorKey,
-                  initialRoute: "/profile",
-                  module: HomeTabsModule()
+              child:ClipRect(
+                child: RouterOutlet(
+                    navigatorKey: navigatorKey,
+                    initialRoute: "/profile",
+                    module: HomeTabsModule()
+                ),
               )
             )
           ]),

@@ -14,8 +14,8 @@ class HomeTabsModule extends MainModule {
 
   @override
   List<Router> get routers => [
-    Router("/profile", child: (_, args) => Profile(), transition: TransitionType.upToDown),
-    Router("/grid_index", child: (_, args) => GridIndex(), transition: TransitionType.upToDown)
+    Router("/profile", child: (_, args) => Profile(), transition: TransitionType.leftToRight),
+    Router("/grid_index", child: (_, args) => GridIndex(), transition: TransitionType.leftToRight)
   ];
 
   static Inject get to => Inject<HomeTabsModule>.of();
