@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             JetToolbar(
+              direction: Axis.vertical,
               size: 88,
               color: Color(0xff3E4345),
               onSelectedChanged: (value){
@@ -58,7 +59,7 @@ class _HomeState extends State<Home> {
               child:ClipRect(
                 child: RouterOutlet(
                     navigatorKey: navigatorKey,
-                    initialRoute: "/profile",
+                    initialRoute: "/grid_index",
                     module: HomeTabsModule()
                 ),
               )

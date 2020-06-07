@@ -48,7 +48,7 @@ class _ScrolledGridSampleState extends State<ScrolledGridSample> {
                         child: Container(
                           padding: EdgeInsets.all(0),
                           // paddings: Edge
-                          child: DataGridWidget(
+                          child: JetGridWidget(
                             columns: [
                               JetColumn('Coll 01',
                                   freezePosition: FreezePosition.Left, group: 'Group 0'),

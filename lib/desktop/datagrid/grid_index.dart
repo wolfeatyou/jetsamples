@@ -1,5 +1,9 @@
+import 'package:JetSamples/desktop/datagrid/scrolled_grid.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jetkit/jetkit.dart';
+
+import 'datagrid_module.dart';
 
 
 class GridIndex extends StatefulWidget {
@@ -13,34 +17,20 @@ class _GridIndexState extends State<GridIndex> {
 
   Widget build(BuildContext context) {
     return JetRow(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
           width: 350,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 60,
-                padding: EdgeInsets.only(left: 32),
-                child: Row(
-                  children: [
-                    Label(
-                      "Index",
-                      width: 20,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: _buildNavigation(),
-              )
-            ],
-          ),
+          child: JetPanel(
+            title: 'Index',
+            child: _buildNavigation(),
+          )
         ),
         Expanded(
-          child: Container(),
-        )
+          child: RouterOutlet(
+                    navigatorKey: navigatorKey,
+                    initialRoute: "/simple",
+                    module: DataGridModule()),
+              )
       ],
     );
   }
