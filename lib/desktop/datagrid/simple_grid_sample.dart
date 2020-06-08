@@ -9,7 +9,7 @@ class SimpleGridSample extends StatelessWidget {
         color: Color(0xffF7F9FA),
         title: "Simple grid",
         child: ListView(children: [
-          Container(height: 600, child: JetCard(child: Text('grid')/*SimpleGridPart()*/))
+          Container(height: 600, child: JetCard(child: /*Text('sdds')*/SimpleGridPart()))
         ]));
   }
 }

@@ -14,13 +14,10 @@ class SimpleGridPart extends StatefulWidget {
 }
 
 class _SimpleGridPartState extends State<SimpleGridPart> {
-  List<dynamic> data;
 
   Future<void> load() async {
-    if(data!=null) return data;
     var d = await parseJsonFromAssets('assets/data.json');
     List<dynamic> list = d["data"] as List<dynamic>;
-    data = list;
     return list;
   }
 
@@ -28,13 +25,13 @@ class _SimpleGridPartState extends State<SimpleGridPart> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    load();
+    //load();
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: load(),
+
         builder: (context, snapshot) {
           return JetGridWidget(
                         columns: [

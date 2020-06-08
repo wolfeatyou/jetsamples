@@ -27,7 +27,8 @@ class _HomeState extends State<Home> {
                 print('fff');
                 print(value);
                 if (value != null) {
-                  navigatorKey.currentState.pushNamed(value);
+                  //navigatorKey.currentState.popUntil((route) => false);
+                  navigatorKey.currentState.pushReplacementNamed(value);
                 }
               },
               children: [
