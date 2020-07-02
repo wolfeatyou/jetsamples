@@ -47,7 +47,7 @@ class _HomeState extends State<Home> {
                     shape: CircleBorder(),
                   ),
                 ),
-                JetToolbarItem(label: "Messages", icon: Icons.message, value: 'grid_index'),
+                JetToolbarItem(label: "Messages", icon: Icons.message, value: 'kit_docs_index'),
                 JetToolbarItem(
                     label: "Groups", icon: Icons.group, selected: true, value: 'profile',),
                 JetToolbarItem(label: "Tasks", icon: Icons.assignment_turned_in),
@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
               child:ClipRect(
                 child: RouterOutlet(
                     navigatorKey: navigatorKey,
-                    initialRoute: "/grid_index",
+                    initialRoute: "/kit_docs_index",
                     module: HomeTabsModule()
                 ),
               )

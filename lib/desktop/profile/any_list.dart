@@ -1,6 +1,6 @@
 
 
-import 'package:JetSamples/desktop/datagrid/scrolled_grid.dart';
+import 'package:JetSamples/desktop/datagrid/grids/scrolled_grid.dart';
 import 'package:flutter/material.dart';
 
 class AnyList extends StatelessWidget{

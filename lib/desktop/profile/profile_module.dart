@@ -1,4 +1,4 @@
-import 'package:JetSamples/desktop/datagrid/grid_index.dart';
+import 'package:JetSamples/desktop/kit/kit_docs_index.dart';
 import 'package:JetSamples/desktop/profile/any_list.dart';
 import 'package:JetSamples/desktop/profile/settings.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -17,7 +17,7 @@ class ProfileModule extends ChildModule {
     Router("/account", child: (_, args) => Account(), transition: TransitionType.leftToRight),
     Router("/settings", child: (_, args) => Settings(), transition: TransitionType.leftToRight),
     Router("/any_list", child: (_, args) => AnyList(), transition: TransitionType.leftToRight),
-    Router("/grid_index", child: (_, args) => GridIndex(), transition: TransitionType.leftToRight)
+    Router("/grid_index", child: (_, args) => KitDocsIndex(), transition: TransitionType.leftToRight)
 
   ];
 

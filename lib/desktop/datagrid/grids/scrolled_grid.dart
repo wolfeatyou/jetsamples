@@ -5,7 +5,7 @@ import 'package:jetgrid/data_grid.dart';
 import 'package:jetkit/app/app.dart';
 
 
-import 'loader.dart';
+import '../loader.dart';
 
 void main() {
   runApp(JetApp(child:ScrolledGridSample()));
