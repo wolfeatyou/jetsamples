@@ -1,0 +1,129 @@
+import 'package:flutter/material.dart';
+import 'package:jetkit/jetkit.dart';
+import 'package:flutter_highlight/flutter_highlight.dart';
+import 'package:flutter_highlight/themes/darcula.dart';
+
+
+class TextStylesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var code = '''
+import 'package:flutter/material.dart';
+import 'package:jetkit/jetkit.dart';
+
+class TextStylesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+     return JetPanel(
+        color: Color(0xffF7F9FA),
+        title: "Typography",
+        child: ListView(children: [
+          JetCard(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      JetText.headerLarge('Header Large'),
+                      JetText.body( loremText),
+                      JetText.body( loremText),
+                      JetText.headerMedium('Header Medium', applyParagraph: true),
+                      JetText.body( loremText),
+                      JetText.body( loremText),
+                      JetText.headerSmall('Header Small', applyParagraph: true),
+                      JetText.body( loremText),
+                  ])),
+          JetCard(
+              child: SelectableText.rich(
+                TextSpan(
+                  text: '', // default text style
+                  children: <InlineSpan>[
+                    ...JetTextSpan.headerLarge(context, 'Header Large'),
+                    ...JetTextSpan.body(context, loremText),
+                    ...JetTextSpan.body(context, loremText),
+
+                    ...JetTextSpan.headerMedium(context, 'Header Medium', applyParagraph: true),
+                    ...JetTextSpan.body(context, loremText),
+                    ...JetTextSpan.body(context, loremText),
+
+                    ...JetTextSpan.headerSmall(context, 'Header Small', applyParagraph: true),
+                    ...JetTextSpan.body(context, loremText)
+                  ],
+                ),
+
+              )
+          )
+        ]));
+  }
+
+  final String loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+}
+
+     ''';
+
+    return JetPanel(
+        color: Color(0xffF7F9FA),
+        title: "Typography",
+        child: ListView(children: [
+          JetCard(
+              color: Color(0xffF7F9FA),
+              child: JetText.body(loremText, applyParagraph: false)),
+
+          JetCard(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                JetText.headerLarge('Header Large'),
+                JetText.body( loremText),
+                JetText.body( loremText),
+                JetText.headerMedium('Header Medium', applyParagraph: true),
+                JetText.body( loremText),
+                JetText.body( loremText),
+                JetText.headerSmall('Header Small', applyParagraph: true),
+                JetText.body( loremText),
+                  ])),
+          Container(
+            height: 450,
+
+            child: JetCard(
+                color: Color(0xff242B1B),
+                child: SingleChildScrollView(
+                  physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  child: HighlightView(
+                    code,
+                    language: 'dart',
+                    theme: darculaTheme,
+                    padding: EdgeInsets.all(16),
+                    textStyle: TextStyle(
+                        fontSize: 16,
+                        //fontFamily: 'Arial',
+                        letterSpacing: 1.5
+                    ),
+                  ),
+                )
+            ),
+          ),
+          JetCard(
+              child: SelectableText.rich(
+                TextSpan(
+                  text: '', // default text style
+                  children: <InlineSpan>[
+                    ...JetTextSpan.headerLarge(context, 'Header Large'),
+                    ...JetTextSpan.body(context, loremText),
+                    ...JetTextSpan.body(context, loremText),
+
+                    ...JetTextSpan.headerMedium(context, 'Header Medium', applyParagraph: true),
+                    ...JetTextSpan.body(context, loremText),
+                    ...JetTextSpan.body(context, loremText),
+
+                    ...JetTextSpan.headerSmall(context, 'Header Small', applyParagraph: true),
+                    ...JetTextSpan.body(context, loremText)
+                  ],
+                ),
+
+              )
+          )
+        ]));
+  }
+
+  final String loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+}
