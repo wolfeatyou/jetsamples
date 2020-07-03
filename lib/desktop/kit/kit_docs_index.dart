@@ -24,10 +24,12 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
         ),
         Expanded(
           child: ClipRect(
-            child: RouterOutlet(
-                navigatorKey: navigatorKey,
-                initialRoute: "/text_styles",
-                module: KitDocsModule()),
+            child: IntrinsicHeight(
+              child: RouterOutlet(
+                  navigatorKey: navigatorKey,
+                  initialRoute: "/text_styles",
+                  module: KitDocsModule()),
+            ),
           ),
         )
       ],

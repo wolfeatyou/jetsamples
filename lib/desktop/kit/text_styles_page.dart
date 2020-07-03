@@ -59,70 +59,90 @@ class TextStylesPage extends StatelessWidget {
 
      ''';
 
-    return JetPanel(
-        color: Color(0xffF7F9FA),
-        title: "Typography",
-        child: ListView(children: [
-          JetCard(
-              color: Color(0xffF7F9FA),
-              child: JetText.body(loremText, applyParagraph: false)),
+    return NotificationListener<ScrollNotification>(
+      onNotification: (scrollState) {
+        print(scrollState);
+        return false;
+      },
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
 
-          JetCard(
+        child: JetPanel(
+            color: Color(0xffF7F9FA),
+            title: "Typography",
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: 900),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                JetText.headerLarge('Header Large'),
-                JetText.body( loremText),
-                JetText.body( loremText),
-                JetText.headerMedium('Header Medium', applyParagraph: true),
-                JetText.body( loremText),
-                JetText.body( loremText),
-                JetText.headerSmall('Header Small', applyParagraph: true),
-                JetText.body( loremText),
-                  ])),
-          Container(
-            height: 450,
+                JetCard(
+                    color: Color(0xffF7F9FA),
+                    child: JetText.body(loremText, applyParagraph: false)),
 
-            child: JetCard(
-                color: Color(0xff242B1B),
-                child: SingleChildScrollView(
-                  physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  child: HighlightView(
-                    code,
-                    language: 'dart',
-                    theme: darculaTheme,
-                    padding: EdgeInsets.all(16),
-                    textStyle: TextStyle(
-                        fontSize: 16,
-                        //fontFamily: 'Arial',
-                        letterSpacing: 1.5
-                    ),
+                JetCard(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                      JetText.headerLarge('Header Large'),
+                      JetText.body( loremText),
+                      JetText.body( loremText),
+                      JetText.headerMedium('Header Medium', applyParagraph: true),
+                      JetText.body( loremText),
+                      JetText.body( loremText),
+                      JetText.headerSmall('Header Small', applyParagraph: true),
+                      JetText.body( loremText),
+                        ])),
+                Container(
+                  height: 450,
+                  child: JetCard(
+                      color: Color(0xff2a2b2a),
+                      child: NotificationListener<ScrollNotification>(
+                        onNotification: (scrollState) {
+                          print(1);
+                          return true;
+                        },
+                        child: SingleChildScrollView(
+                          physics: NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          child: HighlightView(
+                            code,
+                            language: 'dart',
+                            theme: darculaTheme,
+                            padding: EdgeInsets.all(16),
+                            textStyle: TextStyle(
+                                fontSize: 16,
+                                //fontFamily: 'Arial',
+                                letterSpacing: 1.5
+                            ),
+                          ),
+                        ),
+                      )
                   ),
-                )
-            ),
-          ),
-          JetCard(
-              child: SelectableText.rich(
-                TextSpan(
-                  text: '', // default text style
-                  children: <InlineSpan>[
-                    ...JetTextSpan.headerLarge(context, 'Header Large'),
-                    ...JetTextSpan.body(context, loremText),
-                    ...JetTextSpan.body(context, loremText),
-
-                    ...JetTextSpan.headerMedium(context, 'Header Medium', applyParagraph: true),
-                    ...JetTextSpan.body(context, loremText),
-                    ...JetTextSpan.body(context, loremText),
-
-                    ...JetTextSpan.headerSmall(context, 'Header Small', applyParagraph: true),
-                    ...JetTextSpan.body(context, loremText)
-                  ],
                 ),
+                JetCard(
+                    child: SelectableText.rich(
+                      TextSpan(
+                        text: '', // default text style
+                        children: <InlineSpan>[
+                          ...JetTextSpan.headerLarge(context, 'Header Large'),
+                          ...JetTextSpan.body(context, loremText),
+                          ...JetTextSpan.body(context, loremText),
 
-              )
-          )
-        ]));
+                          ...JetTextSpan.headerMedium(context, 'Header Medium', applyParagraph: true),
+                          ...JetTextSpan.body(context, loremText),
+                          ...JetTextSpan.body(context, loremText),
+
+                          ...JetTextSpan.headerSmall(context, 'Header Small', applyParagraph: true),
+                          ...JetTextSpan.body(context, loremText)
+                        ],
+                      ),
+
+                    )
+                )
+              ]),
+            )),
+      ),
+    );
   }
 
   final String loremText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
