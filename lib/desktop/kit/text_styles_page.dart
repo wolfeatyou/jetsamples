@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
@@ -73,7 +74,6 @@ class TextStylesPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                 JetCard(
                     color: Color(0xffF7F9FA),
@@ -102,7 +102,9 @@ class TextStylesPage extends StatelessWidget {
                           return true;
                         },
                         child: SingleChildScrollView(
-                          physics: NeverScrollableScrollPhysics(),
+                          primary: false,
+                          dragStartBehavior: DragStartBehavior.start,
+                          physics: ClampingScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           child: HighlightView(
                             code,

@@ -15,23 +15,41 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
       new GlobalKey<NavigatorState>();
 
   Widget build(BuildContext context) {
-    return JetRow(
+    return Column(
       children: [
-        JetPanel(
-          width: 350,
-          title: 'Index',
-          child: _buildNavigation(),
-        ),
+      ToolbarTheme(
+        backgroundColor: Colors.white,
+        border: Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC))),
+        child: JetToolbar(
+        size: 72,
+        children: <Widget>[
+          Logo('Profile', Icon(Icons.keyboard)),
+          Expanded(
+            child: Container(),
+          )]),
+      ),
         Expanded(
-          child: ClipRect(
-            child: IntrinsicHeight(
-              child: RouterOutlet(
-                  navigatorKey: navigatorKey,
-                  initialRoute: "/text_styles",
-                  module: KitDocsModule()),
-            ),
+          child: JetRow(
+            children: [
+              JetPanel(
+                color: Color(0xffF7F9FA),
+                width: 350,
+                title: 'Index',
+                child: _buildNavigation(),
+              ),
+              Expanded(
+                child: ClipRect(
+                //  child: IntrinsicHeight(
+                    child: RouterOutlet(
+                        navigatorKey: navigatorKey,
+                        initialRoute: "/text_styles",
+                        module: KitDocsModule()),
+                  //),
+                ),
+              )
+            ],
           ),
-        )
+        ),
       ],
     );
   }
