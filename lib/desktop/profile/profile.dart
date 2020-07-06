@@ -20,7 +20,7 @@ class _ProfileState extends State<Profile> {
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: ToolbarTheme(
-        properties: ToolbarThemeDataProperties(
+        styles: ToolbarThemeDataProperties(
             backgroundColor: Colors.white,
             border:
                 Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC)))),

@@ -18,7 +18,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
     return Column(
       children: [
         ToolbarTheme(
-          properties: ToolbarThemeDataProperties(
+          styles: ToolbarThemeDataProperties(
               backgroundColor: Colors.white,
               border: Border(
                   bottom: BorderSide(width: 1, color: Color(0xffC6CACC))),
