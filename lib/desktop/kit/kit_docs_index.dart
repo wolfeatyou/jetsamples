@@ -20,13 +20,23 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
       ToolbarTheme(
         backgroundColor: Colors.white,
         border: Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC))),
+        toolbarItemIconColor: Color(0xff78909C),
+        toolbarItemBackgroundColor: Colors.amberAccent,
+        toolbarItemSelectedIconColor: Colors.blue,
+        textSelectedColor: Colors.blue,
         child: JetToolbar(
         size: 72,
+        direction: Axis.horizontal,
         children: <Widget>[
           Logo('Profile', Icon(Icons.keyboard)),
           Expanded(
             child: Container(),
-          )]),
+          ),
+          JetToolbarItem(label: "Tasks", icon: Icons.assignment_turned_in, selected: true),
+          JetToolbarItem(label: "Sent", icon: Icons.send),
+          JetToolbarItem(label: "Stats", icon: Icons.shop_two),
+          JetToolbarItem(label: "Apps", icon: Icons.apps),
+        ]),
       ),
         Expanded(
           child: JetRow(
