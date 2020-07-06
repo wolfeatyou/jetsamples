@@ -20,67 +20,67 @@ class _ProfileState extends State<Profile> {
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       child: ToolbarTheme(
-        backgroundColor: Colors.white,
-        border: Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC))),
+        properties: ToolbarThemeDataProperties(
+            backgroundColor: Colors.white,
+            border:
+                Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC)))),
         child: m.Column(mainAxisSize: MainAxisSize.min, children: [
-          JetToolbar(
-              size: 72,
-              children: <Widget>[
-                Logo('Profile', Icon(Icons.keyboard)),
-                Expanded(
-                  child: Container(),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(right: 8),
-                    child: Icon(
-                      Icons.search,
-                      size: 20,
-                      color: Color(0xff78909C),
-                    )),
-                Container(
-                  width: 150,
-                  height: 31,
-                  padding: EdgeInsets.only(right: 16),
-                  child: TextFormField(
-                    initialValue: "",
-                    style: m.TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: m.FontWeight.w300),
-                    obscureText: false,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 8),
-                        filled: false,
-                        fillColor: m.Color(0xffF7F9FA),
-                        border: m.OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: m.BorderSide(
-                                width: 1, color: m.Color(0xffE3E5E6)))),
-                  ),
-                ),
-                FlatButton(
-                    onPressed: () => {},
-                    color: Color(0xff367BF5),
-                    child: Text('Go action!',
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontFamily: "Roboto"))),
-                RaisedButton(
-                  //clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 4,
-                  onPressed: () {},
-                  color: Colors.white,
-                  textColor: Colors.white,
-                  child: Icon(
-                    Icons.settings,
-                    size: 18,
-                    color: Color(0xff78909C),
-                  ),
-                  padding: EdgeInsets.all(0),
-                  shape: CircleBorder(),
-                )
-              ]),
+          JetToolbar(size: 72, children: <Widget>[
+            Logo('Profile', Icon(Icons.keyboard)),
+            Expanded(
+              child: Container(),
+            ),
+            Padding(
+                padding: EdgeInsets.only(right: 8),
+                child: Icon(
+                  Icons.search,
+                  size: 20,
+                  color: Color(0xff78909C),
+                )),
+            Container(
+              width: 150,
+              height: 31,
+              padding: EdgeInsets.only(right: 16),
+              child: TextFormField(
+                initialValue: "",
+                style: m.TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: m.FontWeight.w300),
+                obscureText: false,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 8),
+                    filled: false,
+                    fillColor: m.Color(0xffF7F9FA),
+                    border: m.OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: m.BorderSide(
+                            width: 1, color: m.Color(0xffE3E5E6)))),
+              ),
+            ),
+            FlatButton(
+                onPressed: () => {},
+                color: Color(0xff367BF5),
+                child: Text('Go action!',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontFamily: "Roboto"))),
+            RaisedButton(
+              //clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 4,
+              onPressed: () {},
+              color: Colors.white,
+              textColor: Colors.white,
+              child: Icon(
+                Icons.settings,
+                size: 18,
+                color: Color(0xff78909C),
+              ),
+              padding: EdgeInsets.all(0),
+              shape: CircleBorder(),
+            )
+          ]),
           Flexible(
             child: JetRow(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +95,8 @@ class _ProfileState extends State<Profile> {
                           onSelectedChanged: (value) {
                             idx++;
                             if (value != null) {
-                              navigatorKey.currentState.pushReplacementNamed(value);
+                              navigatorKey.currentState
+                                  .pushReplacementNamed(value);
                               //navigatorKey.currentState.pop(value);
                             } else {
                               if (idx % 2 == 0) {
@@ -103,7 +104,8 @@ class _ProfileState extends State<Profile> {
                                 navigatorKey.currentState
                                     .pushReplacementNamed('/settings');
                               } else {
-                                navigatorKey.currentState.pushReplacementNamed('/account');
+                                navigatorKey.currentState
+                                    .pushReplacementNamed('/account');
                               }
                             }
                           },
