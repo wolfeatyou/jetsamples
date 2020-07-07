@@ -19,8 +19,8 @@ class _ProfileState extends State<Profile> {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
-      child: ToolbarTheme(
-        styles: ToolbarThemeDataProperties(
+      child: JetToolbarTheme(
+        styles: JetToolbarStyles(
             backgroundColor: Colors.white,
             border:
                 Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC)))),
