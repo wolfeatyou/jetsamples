@@ -75,6 +75,24 @@ class TextStylesPage extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(
                   children: [
+                    JetTab(
+                      items: [
+                        JetTabItem(text: 'All'),
+                        JetTabItem(text: 'All'),
+                        JetTabItem(text: 'All'),
+                        JetTabItem(text: 'All')
+                      ],
+                    ),
+                    JetTab(
+                      styles: MaterialJetTheme
+                          .getThemeData(Theme.of(context)).tabThemeClassic.styles,
+                      items: [
+                        JetTabItem(text: 'All'),
+                        JetTabItem(text: 'All'),
+                        JetTabItem(text: 'All'),
+                        JetTabItem(text: 'All')
+                      ],
+                    ),
                 JetCard(
                     color: Color(0xffF7F9FA),
                     child: JetText.body(loremText, applyParagraph: false)),
