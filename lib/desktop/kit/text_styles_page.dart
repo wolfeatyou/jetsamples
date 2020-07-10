@@ -58,7 +58,8 @@ class TextStylesPage extends StatelessWidget {
 }
 
      ''';
-    JetThemeData theme = MaterialJetTheme.getThemeData(Theme.of(context));
+    JetThemeData theme =
+        MaterialJetTheme.getThemeData(Theme.of(context));
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollState) {
         print(scrollState);
@@ -73,24 +74,43 @@ class TextStylesPage extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
                 JetTab(
+                  stylesBuilder: (w){
+                    return JetTabStyles(
+                      height: 100
+                    );
+                  },
+                  size: 80,
                   uppercase: true,
                   items: [
-                    JetTabItem(text: 'All', selected: true),
-                    JetTabItem(text: 'Video'),
-                    JetTabItem(text: 'Stores'),
-                    JetTabItem(text: 'Settings'),
-                    JetTabItem(text: 'Tools'),
-                    JetTabItem(text: 'Images')
+                    JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
+                    JetTabItem(text: 'Video',  icon: Icons.videocam),
+                    JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
+                    JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
+                    JetTabItem(text: 'Tools',  icon: Icons.pan_tool),
+                    JetTabItem(text: 'Images',  icon: Icons.image)
                   ],
+
+                  itemBuilder: (JetTabItem item, JetTabStyles theme, bool selected){
+                 //   return JetSquareButton(item.icon, text: item.text, size: theme.height);
+                      return Padding(
+                          padding: EdgeInsets.only(top:6, right: 4, bottom: 6, left:4),
+                          child: JetSquareButton(item.icon, text: item.text, size: theme.height-12));
+                  }
                 ),
                 Container(
                   height: 30,
                 ),
                 JetTab(
-                  styles: theme.tabThemeClassic.styles.copyWith(JetTabStyles(
-                    textStyle: theme.tabThemeClassic.styles.textStyle.copyWith(fontSize: 15),
-                      textSelectedStyle: theme.tabThemeClassic.styles.textSelectedStyle.copyWith(fontSize: 15)
-                  )),
+                  uppercase: true,
+                  scale: JetScale(scale: 1.5),
+                  /*stylesBuilder: (w) {
+                    return theme.tabThemeClassic.styles.copyWith(JetTabStyles(
+                        textStyle: theme.tabThemeClassic.styles.textStyle
+                            .copyWith(fontSize: w.size(15)),
+                        textSelectedStyle: theme
+                            .tabThemeClassic.styles.textSelectedStyle
+                            .copyWith(fontSize: w.size(15))));
+                  },*/
                   items: [
                     JetTabItem(text: 'All', selected: true),
                     JetTabItem(text: 'Video'),
@@ -166,6 +186,10 @@ class TextStylesPage extends StatelessWidget {
             )),
       ),
     );
+  }
+
+  Future<double> getScale() async {
+    return 1.1;
   }
 
   final String loremText =

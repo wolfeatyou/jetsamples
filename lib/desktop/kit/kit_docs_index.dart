@@ -12,20 +12,22 @@ class KitDocsIndex extends StatefulWidget {
 
 class _KitDocsIndexState extends State<KitDocsIndex> {
   final GlobalKey<NavigatorState> navigatorKey =
-      new GlobalKey<NavigatorState>();
+  new GlobalKey<NavigatorState>();
 
   Widget build(BuildContext context) {
     return Column(
       children: [
         JetToolbar(
-            styles: JetToolbarStyles(
-                backgroundColor: Colors.white,
-                border: Border(
-                    bottom: BorderSide(width: 1, color: Color(0xffC6CACC))),
-                toolbarItemIconColor: Color(0xff78909C),
-                toolbarItemBackgroundColor: Colors.amberAccent,
-                toolbarItemSelectedIconColor: Colors.blue,
-                textSelectedColor: Colors.blue),
+            stylesBuilder: (w) {
+              return JetToolbarStyles(
+                  backgroundColor: Colors.white,
+                  border: Border(
+                      bottom: BorderSide(width: 1, color: Color(0xffC6CACC))),
+                  toolbarItemIconColor: Color(0xff78909C),
+                  toolbarItemBackgroundColor: Colors.amberAccent,
+                  toolbarItemSelectedIconColor: Colors.blue,
+                  textSelectedColor: Colors.blue);
+            },
             size: 72,
             direction: Axis.horizontal,
             children: <Widget>[
