@@ -4,9 +4,17 @@ import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/darcula.dart';
 
+extension JetScaleExtention on BuildContext {
+  double scale(double value) {
+    JetThemeData data = JetTheme.of(this);
+    return data.scale.size(value);
+  }
+// ···
+}
+
 class TextStylesPage extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext c) {
     var code = '''
 import 'package:flutter/material.dart';
 import 'package:jetkit/jetkit.dart';
@@ -59,7 +67,7 @@ class TextStylesPage extends StatelessWidget {
 
      ''';
     JetThemeData theme =
-        MaterialJetTheme.getThemeData(Theme.of(context));
+        MaterialJetTheme.getThemeData(Theme.of(c));
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollState) {
         print(scrollState);
@@ -74,12 +82,7 @@ class TextStylesPage extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
                 JetTab(
-                  stylesBuilder: (w){
-                    return JetTabStyles(
-                      height: 100
-                    );
-                  },
-                  size: 80,
+                  size: c.scale(100),
                   uppercase: true,
                   items: [
                     JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
@@ -89,13 +92,34 @@ class TextStylesPage extends StatelessWidget {
                     JetTabItem(text: 'Tools',  icon: Icons.pan_tool),
                     JetTabItem(text: 'Images',  icon: Icons.image)
                   ],
+                  itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected){
+                    double p6 = 4 * styles.scaleFactor.scale;
+                    double p4 = 4 * styles.scaleFactor.scale;
+                      return Padding(
 
-                  itemBuilder: (JetTabItem item, JetTabStyles theme, bool selected){
-                 //   return JetSquareButton(item.icon, text: item.text, size: theme.height);
+                          padding: EdgeInsets.only(top: c.scale(p6), right: c.scale(p4), bottom: c.scale(p6), left: c.scale(p4)),
+                          child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.scale(12)));
+                  }
+                ),
+                Container(
+                  height: 30,
+                ),
+                JetTab(
+                    uppercase: true,
+                    items: [
+                      JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
+                      JetTabItem(text: 'Video',  icon: Icons.videocam),
+                      JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
+                      JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
+                      JetTabItem(text: 'Tools',  icon: Icons.pan_tool),
+                      JetTabItem(text: 'Images',  icon: Icons.image)
+                    ],
+
+                    itemBuilder: (JetTabItem item, JetTabStyles theme, bool selected){
                       return Padding(
                           padding: EdgeInsets.only(top:6, right: 4, bottom: 6, left:4),
-                          child: JetSquareButton(item.icon, text: item.text, size: theme.height-12));
-                  }
+                          child: JetSquareButton(item.icon, text: item.text, size: theme.height - 12));
+                    }
                 ),
                 Container(
                   height: 30,
@@ -169,16 +193,16 @@ class TextStylesPage extends StatelessWidget {
                   TextSpan(
                     text: '', // default text style
                     children: <InlineSpan>[
-                      ...JetTextSpan.headerLarge(context, 'Header Large'),
-                      ...JetTextSpan.body(context, loremText),
-                      ...JetTextSpan.body(context, loremText),
-                      ...JetTextSpan.headerMedium(context, 'Header Medium',
+                      ...JetTextSpan.headerLarge(c, 'Header Large'),
+                      ...JetTextSpan.body(c, loremText),
+                      ...JetTextSpan.body(c, loremText),
+                      ...JetTextSpan.headerMedium(c, 'Header Medium',
                           applyParagraph: true),
-                      ...JetTextSpan.body(context, loremText),
-                      ...JetTextSpan.body(context, loremText),
-                      ...JetTextSpan.headerSmall(context, 'Header Small',
+                      ...JetTextSpan.body(c, loremText),
+                      ...JetTextSpan.body(c, loremText),
+                      ...JetTextSpan.headerSmall(c, 'Header Small',
                           applyParagraph: true),
-                      ...JetTextSpan.body(context, loremText)
+                      ...JetTextSpan.body(c, loremText)
                     ],
                   ),
                 ))
