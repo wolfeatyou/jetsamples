@@ -97,7 +97,7 @@ class TextStylesPage extends StatelessWidget {
                     double p4 = 4 * styles.scaleFactor.scale;
                       return Padding(
                           padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
-                          child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.px(p6*2)));
+                          child: JetSquareButton(item.icon, selected:selected, text: item.text, size: styles.height - c.px(p6*2)));
                   }
                 ),
                 Container(
