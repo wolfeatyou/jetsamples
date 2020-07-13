@@ -93,8 +93,8 @@ class TextStylesPage extends StatelessWidget {
                     JetTabItem(text: 'Images',  icon: Icons.image)
                   ],
                   itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected){
-                    double p6 = 4 * styles.scaleFactor.scale;
-                    double p4 = 4 * styles.scaleFactor.scale;
+                    double p6 = 2 * styles.scaleFactor.scale;
+                    double p4 = 1.8 * styles.scaleFactor.scale;
                       return Padding(
                           padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
                           child: JetSquareButton(item.icon, selected:selected, text: item.text, size: styles.height - c.px(p6*2)));
@@ -117,7 +117,7 @@ class TextStylesPage extends StatelessWidget {
 
                     itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected){
                       double p6 = 0 * styles.scaleFactor.scale;
-                      double p4 = 4 * styles.scaleFactor.scale;
+                      double p4 = 1.8 * styles.scaleFactor.scale;
                       return Padding(
                           padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
                           child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.px(p6*2)));
@@ -129,17 +129,14 @@ class TextStylesPage extends StatelessWidget {
                 ),
                 JetTab(
                   uppercase: true,
-                  scale: JetScale(scale: 1.5),
-                  /*stylesBuilder: (w) {
-                    return theme.tabThemeClassic.styles.copyWith(JetTabStyles(
-                        textStyle: theme.tabThemeClassic.styles.textStyle
-                            .copyWith(fontSize: w.size(15)),
-                        textSelectedStyle: theme
-                            .tabThemeClassic.styles.textSelectedStyle
-                            .copyWith(fontSize: w.size(15))));
-                  },*/
+                  size: c.px(40),
+                  stylesBuilder: (scale){
+                    return JetTabStyles(
+                      backgroundColor: Colors.red
+                    );
+                  },
                   items: [
-                    JetTabItem(text: 'All', selected: true),
+                    JetTabItem(text: 'Images', selected: true),
                     JetTabItem(text: 'Video'),
                     JetTabItem(text: 'Stores'),
                     JetTabItem(text: 'Settings'),
