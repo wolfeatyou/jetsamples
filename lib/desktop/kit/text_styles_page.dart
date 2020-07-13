@@ -5,9 +5,9 @@ import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/darcula.dart';
 
 extension JetScaleExtention on BuildContext {
-  double scale(double value) {
+  double px(double value) {
     JetThemeData data = JetTheme.of(this);
-    return data.scale.size(value);
+    return data.scale.px(value);
   }
 // ···
 }
@@ -82,7 +82,7 @@ class TextStylesPage extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
                 JetTab(
-                  size: c.scale(100),
+                  size: c.px(100),
                   uppercase: true,
                   items: [
                     JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
@@ -96,15 +96,15 @@ class TextStylesPage extends StatelessWidget {
                     double p6 = 4 * styles.scaleFactor.scale;
                     double p4 = 4 * styles.scaleFactor.scale;
                       return Padding(
-
-                          padding: EdgeInsets.only(top: c.scale(p6), right: c.scale(p4), bottom: c.scale(p6), left: c.scale(p4)),
-                          child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.scale(12)));
+                          padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
+                          child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.px(p6*2)));
                   }
                 ),
                 Container(
                   height: 30,
                 ),
                 JetTab(
+                    size: c.px(72),
                     uppercase: true,
                     items: [
                       JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
@@ -115,11 +115,14 @@ class TextStylesPage extends StatelessWidget {
                       JetTabItem(text: 'Images',  icon: Icons.image)
                     ],
 
-                    itemBuilder: (JetTabItem item, JetTabStyles theme, bool selected){
+                    itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected){
+                      double p6 = 0 * styles.scaleFactor.scale;
+                      double p4 = 4 * styles.scaleFactor.scale;
                       return Padding(
-                          padding: EdgeInsets.only(top:6, right: 4, bottom: 6, left:4),
-                          child: JetSquareButton(item.icon, text: item.text, size: theme.height - 12));
+                          padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
+                          child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.px(p6*2)));
                     }
+
                 ),
                 Container(
                   height: 30,
