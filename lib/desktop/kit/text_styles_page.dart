@@ -84,55 +84,32 @@ class TextStylesPage extends StatelessWidget {
                 JetTab(
                   size: c.px(100),
                   uppercase: true,
+                  padding: EdgeInsets.only(top: c.px(2), right: c.px(1.8), bottom: c.px(2), left: c.px(1.8)),
                   items: [
                     JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
                     JetTabItem(text: 'Video',  icon: Icons.videocam),
-                    JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
+                    JetTabItem(text: 'Fibonachi Fibonachi',  icon: Icons.settings),
                     JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
                     JetTabItem(text: 'Tools',  icon: Icons.pan_tool),
                     JetTabItem(text: 'Images',  icon: Icons.image)
                   ],
-                  itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected){
-                    double p6 = 2 * styles.scaleFactor.scale;
-                    double p4 = 1.8 * styles.scaleFactor.scale;
-                      return Padding(
-                          padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
-                          child: JetSquareButton(item.icon, selected:selected, text: item.text, size: styles.height - c.px(p6*2)));
+                  itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected, double size){
+                      return JetSquareButton(item.icon, selected:selected, text: item.text, size: size);
                   }
                 ),
                 Container(
                   height: 30,
                 ),
-                JetTab(
-                    size: c.px(72),
-                    uppercase: true,
-                    items: [
-                      JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
-                      JetTabItem(text: 'Video',  icon: Icons.videocam),
-                      JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
-                      JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
-                      JetTabItem(text: 'Tools',  icon: Icons.pan_tool),
-                      JetTabItem(text: 'Images',  icon: Icons.image)
-                    ],
 
-                    itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected){
-                      double p6 = 0 * styles.scaleFactor.scale;
-                      double p4 = 1.8 * styles.scaleFactor.scale;
-                      return Padding(
-                          padding: EdgeInsets.only(top: c.px(p6), right: c.px(p4), bottom: c.px(p6), left: c.px(p4)),
-                          child: JetSquareButton(item.icon, text: item.text, size: styles.height - c.px(p6*2)));
-                    }
-
-                ),
                 Container(
                   height: 30,
                 ),
                 JetTab(
                   uppercase: true,
                   size: c.px(40),
+
                   stylesBuilder: (scale){
                     return JetTabStyles(
-                      backgroundColor: Colors.red
                     );
                   },
                   items: [
