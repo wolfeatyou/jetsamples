@@ -178,6 +178,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       )),
                 if (true)
+
                   Expanded(
                     flex: 80,
                     child: ClipRect(

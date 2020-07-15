@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:jetkit/elements/buttons/square_button_theme_data.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/darcula.dart';
@@ -66,8 +67,7 @@ class TextStylesPage extends StatelessWidget {
 }
 
      ''';
-    JetThemeData theme =
-        MaterialJetTheme.getThemeData(Theme.of(c));
+    JetThemeData theme = MaterialJetTheme.getThemeData(Theme.of(c));
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollState) {
         print(scrollState);
@@ -81,46 +81,27 @@ class TextStylesPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
-                JetTab(
-                  size: c.px(100),
-                  uppercase: true,
-                  padding: EdgeInsets.only(top: c.px(2), right: c.px(1.8), bottom: c.px(2), left: c.px(1.8)),
-                  items: [
-                    JetTabItem(text: 'All', selected: true, icon: Icons.all_inclusive),
-                    JetTabItem(text: 'Video',  icon: Icons.videocam),
-                    JetTabItem(text: 'Fibonachi Fibonachi',  icon: Icons.settings),
-                    JetTabItem(text: 'Fibonachi',  icon: Icons.settings),
-                    JetTabItem(text: 'Tools',  icon: Icons.pan_tool),
-                    JetTabItem(text: 'Images',  icon: Icons.image)
-                  ],
-                  itemBuilder: (JetTabItem item, JetTabStyles styles, bool selected, double size){
-                      return JetSquareButton(item.icon, selected:selected, text: item.text, size: size);
-                  }
+                JetTab.squareButtons(
+                    size: c.px(100),
+                    items: [
+                      JetTabItem(
+                          text: 'All',
+                          selected: true,
+                          icon: Icons.all_inclusive),
+                      JetTabItem(text: 'Video', icon: Icons.videocam),
+                      JetTabItem(
+                          text: 'Fibonachi Fibonachi', icon: Icons.settings),
+                      JetTabItem(text: 'Fibonachi', icon: Icons.settings),
+                      JetTabItem(text: 'Tools', icon: Icons.pan_tool),
+                      JetTabItem(text: 'Images', icon: Icons.image)
+                    ]),
+                Container(
+                  height: 30,
                 ),
                 Container(
                   height: 30,
                 ),
 
-                Container(
-                  height: 30,
-                ),
-                JetTab(
-                  uppercase: true,
-                  size: c.px(40),
-
-                  stylesBuilder: (scale){
-                    return JetTabStyles(
-                    );
-                  },
-                  items: [
-                    JetTabItem(text: 'Images', selected: true),
-                    JetTabItem(text: 'Video'),
-                    JetTabItem(text: 'Stores'),
-                    JetTabItem(text: 'Settings'),
-                    JetTabItem(text: 'Tools'),
-                    JetTabItem(text: 'Images')
-                  ],
-                ),
                 JetCard(
                     color: Color(0xffF7F9FA),
                     child: JetText.body(loremText, applyParagraph: false)),
