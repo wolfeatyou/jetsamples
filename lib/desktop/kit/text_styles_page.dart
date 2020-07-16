@@ -5,14 +5,6 @@ import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/darcula.dart';
 
-extension JetScaleExtention on BuildContext {
-  double px(double value) {
-    JetThemeData data = JetTheme.of(this);
-    return data.scale.px(value);
-  }
-// ···
-}
-
 class TextStylesPage extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
