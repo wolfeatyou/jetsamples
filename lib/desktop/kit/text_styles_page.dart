@@ -59,7 +59,6 @@ class TextStylesPage extends StatelessWidget {
 }
 
      ''';
-    JetThemeData theme = MaterialJetTheme.getThemeData(Theme.of(c));
     return NotificationListener<ScrollNotification>(
       onNotification: (scrollState) {
         print(scrollState);
