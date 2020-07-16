@@ -46,6 +46,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
         Expanded(
           child: JetRow(
             children: [
+
               JetPanel(
                 color: Color(0xffF7F9FA),
                 width: 350,
@@ -73,7 +74,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: NavPanel(
-          onSelectedChanged: (value) {
+          onSelectedChanged: (value, ctx) {
             if (value != null) {
               navigatorKey.currentState.pushReplacementNamed(value);
             }

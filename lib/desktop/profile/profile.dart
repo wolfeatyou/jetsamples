@@ -92,7 +92,7 @@ class _ProfileState extends State<Profile> {
                       child: Padding(
                         padding: EdgeInsets.only(top: 32),
                         child: Menu(
-                          onSelectedChanged: (value) {
+                          onSelectedChanged: (value, ctx) {
                             idx++;
                             if (value != null) {
                               navigatorKey.currentState
