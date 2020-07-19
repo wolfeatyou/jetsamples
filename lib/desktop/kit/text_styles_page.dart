@@ -73,7 +73,7 @@ class TextStylesPage extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
                 JetTab.squareButtons(
-                    size: c.px(100),
+                    size: c.px(84),
                     items: [
                       JetTabItem(
                           text: 'All',

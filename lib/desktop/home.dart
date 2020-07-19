@@ -1,6 +1,8 @@
 import 'package:JetSamples/desktop/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:jetkit/app/material_theme/buttons/square_button_material_styles.dart';
+import 'package:jetkit/app/material_theme/palette.dart';
 import 'package:jetkit/jetkit.dart';
 
 import 'home_tabs_module.dart';
@@ -20,9 +22,6 @@ class _HomeState extends State<Home> {
       child: JetRouter(
         child: Column(
           children: [
-           /* Builder(builder: (context) {
-              return Text(JetRouter.of(context).getUrl());
-            }),*/
             Expanded(
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -73,6 +72,38 @@ class _HomeState extends State<Home> {
                         JetToolbarItem(label: "Sent", icon: Icons.send),
                         JetToolbarItem(label: "Stats", icon: Icons.shop_two),
                         JetToolbarItem(label: "Apps", icon: Icons.apps),
+                      ],
+                    ),
+                    JetToolbar(
+                      direction: Axis.vertical,
+                      size: 88,
+                      color: Color(0xff3E4345),
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(top: 10, bottom: 37),
+                          child: RawMaterialButton(
+                            onPressed: () {},
+                            elevation: 2.0,
+                            fillColor: Colors.indigoAccent,
+                            child: Icon(
+                              Icons.edit,
+                              size: 25.0,
+                              color: Colors.white,
+                            ),
+                            padding: EdgeInsets.all(10.0),
+                            shape: CircleBorder(),
+                          ),
+                        ),
+                        JetTab.squareButtons(
+                          size: 84,
+                          direction: Axis.vertical,
+                          itemScheme: SquareButtonColorScheme.whiteScheme(MaterialJetThemePalette.defaultPalette()).scheme,
+                          items: [
+                            JetTabItem(text: 'Messages', icon: Icons.message),
+                            JetTabItem(text: 'Stats', icon: Icons.shop_two),
+                            JetTabItem(text: 'Apps', icon: Icons.apps)
+                          ],
+                        )
                       ],
                     ),
                     /*Expanded(
