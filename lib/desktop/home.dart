@@ -20,9 +20,9 @@ class _HomeState extends State<Home> {
       child: JetRouter(
         child: Column(
           children: [
-            Builder(builder: (context) {
+           /* Builder(builder: (context) {
               return Text(JetRouter.of(context).getUrl());
-            }),
+            }),*/
             Expanded(
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,

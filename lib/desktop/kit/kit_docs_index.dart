@@ -35,13 +35,17 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
               Expanded(
                 child: Container(),
               ),
-              JetToolbarItem(
-                  label: "Tasks",
-                  icon: Icons.assignment_turned_in,
-                  selected: true),
-              JetToolbarItem(label: "Sent", icon: Icons.send),
-              JetToolbarItem(label: "Stats", icon: Icons.shop_two),
-              JetToolbarItem(label: "Apps", icon: Icons.apps),
+              JetTab.squareButtons(
+                size: 60,
+                theme: JetTabStyles(
+                  padding: EdgeInsets.only(right: 8)
+                ),
+                items: [
+                  JetTabItem(text: 'Sent', icon: Icons.send),
+                  JetTabItem(text: 'Stats', icon: Icons.shop_two),
+                  JetTabItem(text: 'Apps', icon: Icons.apps)
+                ],
+              )
             ]),
         Expanded(
           child: JetRow(
