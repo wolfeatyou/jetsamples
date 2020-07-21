@@ -1,7 +1,7 @@
 import 'package:JetSamples/desktop/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jetkit/app/material_theme/buttons/square_button_material_styles.dart';
+import 'package:jetkit/app/material_theme/buttons/square_button_styles.dart';
 import 'package:jetkit/app/material_theme/palette.dart';
 import 'package:jetkit/jetkit.dart';
 
@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
                         JetTabs.squareButtons(
                           size: 84,
                           direction: Axis.vertical,
-                          itemScheme: SquareButtonColorScheme.whiteScheme(MaterialJetThemePalette.defaultPalette()).scheme,
+                          itemScheme: JetButtonColorScheme.whiteScheme(MaterialJetThemePalette.defaultPalette()).scheme,
                           items: [
                             JetTabEntry(text: 'Messages', icon: Icons.message,  value: 'kit_docs_index'),
                             JetTabEntry(text: 'Stats', icon: Icons.shop_two,  value: 'profile'),

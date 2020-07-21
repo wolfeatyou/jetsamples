@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jetkit/elements/buttons/button_theme_data.dart';
+import 'package:jetkit/elements/buttons/base/button_theme_data.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/darcula.dart';
@@ -91,7 +91,7 @@ class TextStylesPage extends StatelessWidget {
                 ),
 
                 JetTabs.common(
-                    size: c.px(100),
+                   // size: c.px(100),
                     items: [
                       JetTabEntry(
                           text: 'All',
