@@ -31,16 +31,6 @@ class _HomeState extends State<Home> {
                       direction: Axis.vertical,
                       size: 88,
                       color: Color(0xff3E4345),
-                      onSelectedChanged: (value, ctx) {
-                        //JetRouter.of(ctx).navigate(value ?? '/llla');
-                        //return;
-                        print('fff');
-                        print(value);
-                        if (value != null) {
-                          //navigatorKey.currentState.popUntil((route) => false);
-                          navigatorKey.currentState.pushReplacementNamed(value);
-                        }
-                      },
                       children: [
                         Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 38),
@@ -57,52 +47,23 @@ class _HomeState extends State<Home> {
                             shape: CircleBorder(),
                           ),
                         ),
-                        JetToolbarItem(
-                            label: "Messages",
-                            icon: Icons.message,
-                            value: 'kit_docs_index'),
-                        JetToolbarItem(
-                          label: "Groups",
-                          icon: Icons.group,
-                          selected: true,
-                          value: 'profile',
-                        ),
-                        JetToolbarItem(
-                            label: "Tasks", icon: Icons.assignment_turned_in),
-                        JetToolbarItem(label: "Sent", icon: Icons.send),
-                        JetToolbarItem(label: "Stats", icon: Icons.shop_two),
-                        JetToolbarItem(label: "Apps", icon: Icons.apps),
-                      ],
-                    ),
-                    JetToolbar(
-                      direction: Axis.vertical,
-                      size: 88,
-                      color: Color(0xff3E4345),
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 10, bottom: 37),
-                          child: RawMaterialButton(
-                            onPressed: () {},
-                            elevation: 2.0,
-                            fillColor: Colors.indigoAccent,
-                            child: Icon(
-                              Icons.edit,
-                              size: 25.0,
-                              color: Colors.white,
-                            ),
-                            padding: EdgeInsets.all(10.0),
-                            shape: CircleBorder(),
-                          ),
-                        ),
-                        JetTab.squareButtons(
+                        JetTabs.squareButtons(
                           size: 84,
                           direction: Axis.vertical,
                           itemScheme: SquareButtonColorScheme.whiteScheme(MaterialJetThemePalette.defaultPalette()).scheme,
                           items: [
-                            JetTabItem(text: 'Messages', icon: Icons.message),
-                            JetTabItem(text: 'Stats', icon: Icons.shop_two),
-                            JetTabItem(text: 'Apps', icon: Icons.apps)
+                            JetTabEntry(text: 'Messages', icon: Icons.message,  value: 'kit_docs_index'),
+                            JetTabEntry(text: 'Stats', icon: Icons.shop_two,  value: 'profile'),
+                            JetTabEntry(text: 'Apps', icon: Icons.apps),
+                            JetTabEntry(
+                                text: "Tasks", icon: Icons.assignment_turned_in),
+                            JetTabEntry(text: "Sent", icon: Icons.send),
+                            JetTabEntry(text: "Stats", icon: Icons.shop_two),
+                            JetTabEntry(text: "Apps", icon: Icons.apps),
                           ],
+                          onSelect: (value, ctx){
+                            if(value !=null ) navigatorKey.currentState.pushReplacementNamed(value);
+                          }
                         )
                       ],
                     ),

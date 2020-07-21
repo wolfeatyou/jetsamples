@@ -35,15 +35,15 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
               Expanded(
                 child: Container(),
               ),
-              JetTab.squareButtons(
+              JetTabs.squareButtons(
                 size: 60,
                 theme: JetTabStyles(
                   padding: EdgeInsets.only(right: 8)
                 ),
                 items: [
-                  JetTabItem(text: 'Sent', icon: Icons.send),
-                  JetTabItem(text: 'Stats', icon: Icons.shop_two),
-                  JetTabItem(text: 'Apps', icon: Icons.apps)
+                  JetTabEntry(text: 'Sent', icon: Icons.send),
+                  JetTabEntry(text: 'Stats', icon: Icons.shop_two),
+                  JetTabEntry(text: 'Apps', icon: Icons.apps)
                 ],
               )
             ]),

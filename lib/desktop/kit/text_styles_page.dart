@@ -72,19 +72,19 @@ class TextStylesPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
-                JetTab.squareButtons(
+                JetTabs.squareButtons(
                     size: c.px(84),
                     items: [
-                      JetTabItem(
+                      JetTabEntry(
                           text: 'All',
                           selected: true,
                           icon: Icons.all_inclusive),
-                      JetTabItem(text: 'Video', icon: Icons.videocam),
-                      JetTabItem(
+                      JetTabEntry(text: 'Video', icon: Icons.videocam),
+                      JetTabEntry(
                           text: 'Fibonachi Fibonachi', icon: Icons.settings),
-                      JetTabItem(text: 'Fibonachi', icon: Icons.settings),
-                      JetTabItem(text: 'Tools', icon: Icons.pan_tool),
-                      JetTabItem(text: 'Images', icon: Icons.image)
+                      JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
+                      JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
+                      JetTabEntry(text: 'Images', icon: Icons.image)
                     ]),
                 Container(
                   height: 30,
