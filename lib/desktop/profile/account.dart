@@ -169,9 +169,8 @@ class AccountSettingsState3 extends State<Account> {
                         ],
                       ),
                     ),
-                    JaExpanded(
-                      minRowWidth: 800,
-                      flex: 25,
+                    Flexible(
+                       flex: 25,
                       child: Container(
                         padding: EdgeInsets.only(top:26, left:42, right: 0),
                         child: Column(
