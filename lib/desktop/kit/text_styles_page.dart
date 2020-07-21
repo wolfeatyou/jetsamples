@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jetkit/elements/buttons/square_button_theme_data.dart';
+import 'package:jetkit/elements/buttons/button_theme_data.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/darcula.dart';
@@ -73,7 +73,7 @@ class TextStylesPage extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
                 JetTabs.squareButtons(
-                    size: c.px(84),
+                    size: c.px(100),
                     items: [
                       JetTabEntry(
                           text: 'All',
@@ -89,6 +89,21 @@ class TextStylesPage extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
+
+                JetTabs.common(
+                    size: c.px(100),
+                    items: [
+                      JetTabEntry(
+                          text: 'All',
+                          selected: true,
+                          icon: Icons.all_inclusive),
+                      JetTabEntry(text: 'Video', icon: Icons.videocam),
+                      JetTabEntry(
+                          text: 'Fibonachi Fibonachi', icon: Icons.settings),
+                      JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
+                      JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
+                      JetTabEntry(text: 'Images', icon: Icons.image)
+                    ]),
                 Container(
                   height: 30,
                 ),
