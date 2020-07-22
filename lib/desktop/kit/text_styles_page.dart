@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:jetkit/app/material_theme/tabs/tabs_material_styles.dart';
 import 'package:jetkit/elements/buttons/base/button_theme_data.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:flutter_highlight/flutter_highlight.dart';
@@ -72,26 +73,24 @@ class TextStylesPage extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 900),
               child: Column(children: [
-                JetTabs.squareButtons(
-                    size: c.px(100),
-                    items: [
-                      JetTabEntry(
-                          text: 'All',
-                          selected: true,
-                          icon: Icons.all_inclusive),
-                      JetTabEntry(text: 'Video', icon: Icons.videocam),
-                      JetTabEntry(
-                          text: 'Fibonachi Fibonachi', icon: Icons.settings),
-                      JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
-                      JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
-                      JetTabEntry(text: 'Images', icon: Icons.image)
-                    ]),
+                JetTabs.squareButtons(size: c.px(100), items: [
+                  JetTabEntry(
+                      text: 'All', selected: true, icon: Icons.all_inclusive),
+                  JetTabEntry(text: 'Video', icon: Icons.videocam),
+                  JetTabEntry(
+                      text: 'Fibonachi Fibonachi', icon: Icons.settings),
+                  JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
+                  JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
+                  JetTabEntry(text: 'Images', icon: Icons.image)
+                ]),
                 Container(
                   height: 30,
                 ),
-
                 JetTabs.common(
-                   // size: c.px(100),
+                  // size: c.px(100),
+                    scheme:
+                    JetTabsColorScheme.defaultScheme(JetTheme.of(c).palette)
+                        .scheme,
                     items: [
                       JetTabEntry(
                           text: 'All',
@@ -107,7 +106,26 @@ class TextStylesPage extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
-
+                JetTabs.common(
+                    // size: c.px(30),
+                    scheme:
+                        JetTabsColorScheme.blackScheme(JetTheme.of(c).palette)
+                            .scheme,
+                    items: [
+                      JetTabEntry(
+                          text: 'All',
+                          selected: true,
+                          icon: Icons.all_inclusive),
+                      JetTabEntry(text: 'Video', icon: Icons.videocam),
+                      JetTabEntry(
+                          text: 'Fibonachi Fibonachi', icon: Icons.settings),
+                      JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
+                      JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
+                      JetTabEntry(text: 'Images', icon: Icons.image)
+                    ]),
+                Container(
+                  height: 30,
+                ),
                 JetCard(
                     color: Color(0xffF7F9FA),
                     child: JetText.body(loremText, applyParagraph: false)),
