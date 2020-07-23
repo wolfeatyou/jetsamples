@@ -2,6 +2,7 @@ import 'package:JetSamples/desktop/profile/profile_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as m;
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:jetkit/app/app.dart';
 import 'package:jetkit/jetkit.dart';
 
 class Profile extends StatefulWidget {
@@ -59,7 +60,15 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             FlatButton(
-                onPressed: () => {},
+                onPressed: (){
+                  var direction = MaterialAppSettings.of(context).data.textDirection;
+                  if(direction == TextDirection.ltr){
+                    MaterialAppSettings.of(context).data.textDirection = TextDirection.rtl;
+                  }
+                  else{
+                    MaterialAppSettings.of(context).data.textDirection = TextDirection.ltr;
+                  }
+                },
                 color: Color(0xff367BF5),
                 child: Text('Go action!',
                     style: TextStyle(
@@ -82,7 +91,7 @@ class _ProfileState extends State<Profile> {
             )
           ]),
           Flexible(
-            child: JetRow(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

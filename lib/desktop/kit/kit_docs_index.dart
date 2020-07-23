@@ -1,6 +1,7 @@
 import 'package:JetSamples/desktop/datagrid/grids/scrolled_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:jetkit/app/material_theme/tabs/tabs_material_styles.dart';
 import 'package:jetkit/jetkit.dart';
 
 import 'kit_docs_module.dart';
@@ -38,8 +39,8 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
               JetTabs.squareButtons(
                 size: 60,
                 theme: JetTabStyles(
-                  padding: EdgeInsetsDirectional.only(end: 8)
-                ),
+                  padding: EdgeInsetsDirectional.only(end: 8),
+               ),
                 items: [
                   JetTabEntry(text: 'Sent', icon: Icons.send),
                   JetTabEntry(text: 'Stats', icon: Icons.shop_two),
@@ -48,7 +49,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
               )
             ]),
         Expanded(
-          child: JetRow(
+          child: Row(
             children: [
 
               JetPanel(

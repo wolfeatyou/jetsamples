@@ -24,7 +24,7 @@ class SettingsState extends State<Settings> {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsetsDirectional.only(start: 52, end: 16, top: 32),
-        child: JetRow(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(

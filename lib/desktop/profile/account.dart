@@ -25,7 +25,7 @@ class AccountSettingsState3 extends State<Account> {
     return SingleChildScrollView(
       child: Padding(
                 padding: EdgeInsetsDirectional.only(start: 52, end: 16, top: 32),
-                child: JetRow(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children:[
@@ -34,7 +34,7 @@ class AccountSettingsState3 extends State<Account> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          JetRow(
+                          Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [Expanded(

@@ -1,12 +1,8 @@
-import 'package:JetSamples/desktop/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jetkit/app/material_theme/buttons/square_button_styles.dart';
 import 'package:jetkit/app/material_theme/palette.dart';
 import 'package:jetkit/jetkit.dart';
-
 import 'home_tabs_module.dart';
-import 'kit/kit_docs_index.dart';
 
 class Home extends StatefulWidget {
   @override
