@@ -72,8 +72,11 @@ class TextStylesPage extends StatelessWidget {
             title: "Typography",
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 900),
-              child: Column(children: [
-                JetTabs.squareButtons(size: c.px(100), items: [
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                JetTabs.squareButtons(
+                    size: c.px(100), items: [
                   JetTabEntry(
                       text: 'All', selected: true, icon: Icons.all_inclusive),
                   JetTabEntry(text: 'Video', icon: Icons.videocam),

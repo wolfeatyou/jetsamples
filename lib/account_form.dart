@@ -11,7 +11,7 @@ class AccountForm extends StatelessWidget {
     return  RepaintBoundary(
       child: m.Container(
         //  height: 500,
-          padding: EdgeInsets.only(left: 32, top: 32, right: 32, bottom: 32),
+          padding: EdgeInsetsDirectional.only(start: 32, top: 32, end: 32, bottom: 32),
           alignment: m.Alignment(-1, -1),
           color: Color(0xffF1F3F4),
           child: m.ConstrainedBox(
@@ -193,9 +193,9 @@ class AccountForm extends StatelessWidget {
                       onPressed: (){},
                       color:Color(0xffE3E5E5),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-                      padding:EdgeInsets.only(left: 32, right: 32, top:12, bottom: 12),
+                      padding:EdgeInsetsDirectional.only(start: 32, end: 32, top:12, bottom: 12),
                       label: Text('Cancel', overflow: TextOverflow.ellipsis, style: m.TextStyle(fontSize: 20, color: Colors.black, fontWeight: m.FontWeight.w400, fontFamily: "Roboto")) ,
-                      icon: m.Padding( padding:m.EdgeInsets.only(right: 1),child: m.Icon(m.Icons.clear, color: Colors.red)),
+                      icon: m.Padding( padding:m.EdgeInsetsDirectional.only(end: 1),child: m.Icon(m.Icons.clear, color: Colors.red)),
                     ),
                     m.Expanded(
                       flex: 1,
@@ -212,7 +212,7 @@ class AccountForm extends StatelessWidget {
                       label: m.Padding(
                           padding:EdgeInsets.only ( top:12, bottom: 12),
                           child: Text('Save changes', overflow: TextOverflow.ellipsis, style: m.TextStyle(fontSize: 20, color: Colors.black, fontWeight: m.FontWeight.w400, fontFamily: "Roboto"))) ,
-                      icon: m.Padding( padding:m.EdgeInsets.only(right: 1),child: m.Icon(m.Icons.check, color: Colors.green)),
+                      icon: m.Padding( padding:m.EdgeInsetsDirectional.only(end: 1),child: m.Icon(m.Icons.check, color: Colors.green)),
                     ),
                   ],
                 )

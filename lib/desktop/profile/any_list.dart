@@ -8,7 +8,7 @@ class AnyList extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Padding(
-        padding: EdgeInsets.only(left:48, right: 48, top:48),
+        padding: EdgeInsetsDirectional.only(start:48, end: 48, top:48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

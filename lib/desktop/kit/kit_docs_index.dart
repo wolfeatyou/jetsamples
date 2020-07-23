@@ -38,7 +38,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
               JetTabs.squareButtons(
                 size: 60,
                 theme: JetTabStyles(
-                  padding: EdgeInsets.only(right: 8)
+                  padding: EdgeInsetsDirectional.only(end: 8)
                 ),
                 items: [
                   JetTabEntry(text: 'Sent', icon: Icons.send),

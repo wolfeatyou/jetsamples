@@ -24,7 +24,7 @@ class AccountSettingsState3 extends State<Account> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-                padding: EdgeInsets.only(left: 52, right: 16, top: 32),
+                padding: EdgeInsetsDirectional.only(start: 52, end: 16, top: 32),
                 child: JetRow(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,9 +172,10 @@ class AccountSettingsState3 extends State<Account> {
                     Flexible(
                        flex: 25,
                       child: Container(
-                        padding: EdgeInsets.only(top:26, left:42, right: 0),
+                        padding: EdgeInsetsDirectional.only(top:26, start:42, end: 0),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             MenuList(
                               children: [

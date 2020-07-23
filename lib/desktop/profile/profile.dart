@@ -31,7 +31,7 @@ class _ProfileState extends State<Profile> {
               child: Container(),
             ),
             Padding(
-                padding: EdgeInsets.only(right: 8),
+                padding: EdgeInsetsDirectional.only(end: 8),
                 child: Icon(
                   Icons.search,
                   size: 20,
@@ -40,7 +40,7 @@ class _ProfileState extends State<Profile> {
             Container(
               width: 150,
               height: 31,
-              padding: EdgeInsets.only(right: 16),
+              padding: EdgeInsetsDirectional.only(end: 16),
               child: TextFormField(
                 initialValue: "",
                 style: m.TextStyle(
@@ -49,7 +49,7 @@ class _ProfileState extends State<Profile> {
                     fontWeight: m.FontWeight.w300),
                 obscureText: false,
                 decoration: InputDecoration(
-                    contentPadding: EdgeInsets.only(left: 8),
+                    contentPadding: EdgeInsetsDirectional.only(start: 8),
                     filled: false,
                     fillColor: m.Color(0xffF7F9FA),
                     border: m.OutlineInputBorder(),
