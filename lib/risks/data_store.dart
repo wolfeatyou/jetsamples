@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
 import 'data_store_list.dart';
-
-class Serializer<T> {
-  T fromJson(Map<String, dynamic> json) {
-    throw 'not implemented';
-  }
-}
-
 
 class CardType {
   final String name;
@@ -74,14 +66,11 @@ class DataContext<T> extends InheritedWidget {
   final DataStoreList<T> data;
 
   DataContext(
-      {Serializer<T> serializer,
-      List<Operation> operations,
-      Widget child,
+      {Widget child,
       OnUpdateType<T> update,
       OnActionType<T> action,
       OnReadType<T> read})
-      : data = DataStoreList<T>(serializer:serializer, operations:operations,
-            onRead: read, onUpdate: update),
+      : data = DataStoreList<T>(onRead: read, onUpdate: update),
         super(child: child);
 
   @override
@@ -98,21 +87,4 @@ class DataContext<T> extends InheritedWidget {
     }
     return data;
   }
-}
-
-enum OperationType { read, update, action }
-
-class Operation {
-  String name;
-  OperationType type;
-  List<Parameter> parameters;
-
-  Operation(this.type, this.name, {this.parameters});
-}
-
-class Parameter {
-  String name;
-  dynamic value;
-
-  Parameter(this.name, this.value);
 }
