@@ -16,9 +16,7 @@ abstract class _DataStoreList<T> with Store{
   @observable
   int selectedIndex = 0;
 
-  _DataStoreList(this.serializer, this.operations, {this.onRead, this.onUpdate})
-      : assert(operations != null),
-        assert(serializer != null);
+  _DataStoreList({this.serializer, this.operations, this.onRead, this.onUpdate});
 
   @computed
   List<T> get items {

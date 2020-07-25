@@ -47,7 +47,6 @@ class Cards extends StatelessWidget {
                 flex: 4,
                 child: Observer(builder: (context) {
                   return DataStoreListWidget<TransactionType>(
-                      serializer: TransactionTypeSerializer(),
                       read:(){
                         return TransactionType.getByCardCode(DataStoreListWidget.of<CardType>(context)
                             .selected

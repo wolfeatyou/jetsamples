@@ -9,11 +9,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return JetApp(
         child: DataStoreListWidget<CardType>(
-            serializer: CardTypeSerializer(),
-            operations: [
-              Operation(OperationType.read, 'all_cards',
-                  parameters: [Parameter('institution', 23)])
-            ],
+            read: (){
+              return CardType.getAll();
+            },
             child: Cards()));
   }
 }

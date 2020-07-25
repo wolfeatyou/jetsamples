@@ -28,6 +28,15 @@ class CardType {
   final dynamic value;
 
   CardType({this.name, this.value});
+
+  static List<CardType> getAll() {
+    return [
+      CardTypeSerializer().fromJson({"name": "Card name 1", "value": 0}),
+      CardTypeSerializer().fromJson({"name": "Card name 2", "value": 1}),
+      CardTypeSerializer().fromJson({"name": "Card name 3", "value": 2}),
+      CardTypeSerializer().fromJson({"name": "Card name 4", "value": 3})
+    ];
+  }
 }
 
 class TransactionTypeSerializer implements Serializer<TransactionType> {
@@ -75,7 +84,7 @@ class DataStoreListWidget<T> extends InheritedWidget {
       OnUpdateType<T> update,
       OnActionType<T> action,
       OnReadType<T> read})
-      : data = DataStoreList<T>(serializer, operations,
+      : data = DataStoreList<T>(serializer:serializer, operations:operations,
             onRead: read, onUpdate: update),
         super(child: child);
 
