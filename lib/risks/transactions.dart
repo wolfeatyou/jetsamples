@@ -11,7 +11,7 @@ class Transactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: Pull.store<TransactionType>(context)
+      children: Take.list<TransactionType>(context)
           .items
           .map((e) => _createItem(e, context))
           .toList(),
@@ -23,7 +23,7 @@ class Transactions extends StatelessWidget {
   Widget _createItem(TransactionType transaction, BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Pull.store<TransactionType>(context).setSelectedIndex(transaction.uid);
+          Take.list<TransactionType>(context).setSelectedIndex(transaction.uid);
         },
         child: Padding(padding: EdgeInsets.all(8), child: Text(transaction.description)));
   }

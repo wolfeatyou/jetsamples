@@ -9,8 +9,8 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JetApp(
-        child: Push<CardType>(
-            read: (context) => () =>  CardType.getAll(),
+        child: ObservableProvider<CardType>(
+            get: (context) => () =>  CardType.getAll(),
             child: Cards()));
   }
 }

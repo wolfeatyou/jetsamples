@@ -29,9 +29,9 @@ class Cards extends StatelessWidget {
                 flex: 1,
                 child: Menu(
                     onSelectedChanged: (value, ctx) {
-                      Pull.store<CardType>(ctx).setSelectedIndex(value);
+                      Take.list<CardType>(ctx).setSelectedIndex(value);
                     },
-                    children: Pull.store<CardType>(context)
+                    children: Take.list<CardType>(context)
                         .items
                         .map((e) => MenuItem(e.name,
                             value: e.value,
@@ -41,9 +41,9 @@ class Cards extends StatelessWidget {
               ),
               Expanded(
                 flex: 2,
-                child: Push<TransactionType>(
-                    read: (context) {
-                      int cardCode = Pull.selected<CardType>(context).value;
+                child: ObservableProvider<TransactionType>(
+                    get: (context) {
+                      int cardCode = Take.selected<CardType>(context).value;
                       return () => TransactionType.getByCardCode(cardCode);
                     },
                     child: Row(
@@ -51,12 +51,12 @@ class Cards extends StatelessWidget {
                         Expanded(flex: 1, child: Transactions()),
                         Expanded(
                             flex: 1,
-                            child: Push<TransactionType>(
-                                read: (context) {
+                            child: ObservableProvider<TransactionType>(
+                                get: (context) {
                                   var transactionId =
-                                      Pull.selected<TransactionType>(context)?.uid;
+                                      Take.selected<TransactionType>(context)?.uid;
                                   return () =>
-                                      TransactionType.getByTransaction(transactionId);
+                                      TransactionType.getRelated(transactionId);
                                 },
                                 child: Transactions()))
                       ],

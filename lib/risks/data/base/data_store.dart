@@ -29,21 +29,21 @@ class DataContextInherited<T> extends InheritedWidget {
 
 }
 
-class Push<T> extends StatelessWidget{
+class ObservableProvider<T> extends StatelessWidget{
   final Widget child;
-  final ReadOperationObservable read;
-  final UpdateOperationObservable update;
-  final CustomOperationObservable custom;
-  Push({this.child, this.read, this.update, this.custom});
+  final ReadOperationObservable get;
+  final UpdateOperationObservable set;
+  final CustomOperationObservable run;
+  ObservableProvider({this.child, this.get, this.set, this.run});
 
   @override
   Widget build(BuildContext context) {
     return Observer(
       name: "DataContext observer $T",
       builder: (context) {
-        ReadOperationType<T> readOperation = this.read!=null?this.read(context):null;
-        UpdateOperationType<T> updateOperation = this.update!=null?this.update(context):null;
-        CustomOperationType<T> customOperation = this.custom!=null?this.custom(context):null;
+        ReadOperationType<T> readOperation = this.get!=null?this.get(context):null;
+        UpdateOperationType<T> updateOperation = this.set!=null?this.set(context):null;
+        CustomOperationType<T> customOperation = this.run!=null?this.run(context):null;
         return DataContextInherited<T>(
           data: DataStoreList<T>(onRead: readOperation, onUpdate: updateOperation, onCustom: customOperation, context: context),
           child: child,
@@ -63,14 +63,14 @@ class Push<T> extends StatelessWidget{
   }
 }
 
-class Pull{
+class Take{
 
-  static DataStoreList<T> store<T>(BuildContext context){
-    return Push._of<T>(context);
+  static DataStoreList<T> list<T>(BuildContext context){
+    return ObservableProvider._of<T>(context);
   }
 
   static T selected<T>(BuildContext context){
-    return Push._of<T>(context).selected;
+    return ObservableProvider._of<T>(context).selected;
   }
 
 }
