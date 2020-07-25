@@ -13,7 +13,7 @@ class Transactions extends StatelessWidget {
     // TODO: implement build
 
     return  ListView(
-          children: DataContext.of<TransactionType>(context).items.map((e) => _createItem(e)).toList(),
+          children: DataContext.of<TransactionType>(context).items.map((e) => _createItem(e, context)).toList(),
 
     );
 
@@ -22,7 +22,13 @@ class Transactions extends StatelessWidget {
 
   Transactions();
 
-  Widget _createItem(TransactionType transaction){
-    return Text(transaction.description);
+  Widget _createItem(TransactionType transaction, BuildContext context){
+    return GestureDetector(
+        onTap: (){
+          DataContext.of<TransactionType>(context).setSelectedIndex(transaction.uid);
+        },
+        child: Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(transaction.description)));
   }
 }

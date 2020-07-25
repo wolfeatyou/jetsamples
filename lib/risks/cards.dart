@@ -44,16 +44,32 @@ class Cards extends StatelessWidget {
                         .toList()),
               ),
               Expanded(
-                flex: 4,
+                flex: 2,
                 child: Observer(builder: (context) {
                   int cardCode = DataContext.of<CardType>(context).selected?.value;
                   return DataContext<TransactionType>(
                       read: () {
                         return TransactionType.getByCardCode(cardCode);
                       },
-                      child: Transactions());
+                      child: Row(
+                        children: [
+                          Expanded(flex: 1, child: Transactions()),
+                          Expanded(
+                              flex: 1,
+                              child: Observer(builder: (context) {
+                                int transactionUid =
+                                    DataContext.of<TransactionType>(context).selected.uid;
+                                return DataContext<TransactionType>(
+                                    read: () {
+                                      return TransactionType.getByTransaction(
+                                          transactionUid);
+                                    },
+                                    child: Transactions());
+                              }))
+                        ],
+                      ));
                 }),
-              )
+              ),
             ],
           ),
         ),
