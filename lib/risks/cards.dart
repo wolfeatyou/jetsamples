@@ -1,14 +1,10 @@
 import 'package:JetSamples/risks/transactions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jetkit/jetkit.dart';
-import 'package:mobx/mobx.dart';
-
-import 'data_store.dart';
-
-import 'data_store.dart' as s;
-import 'data_store_list.dart';
+import 'data/base/data_store.dart';
+import 'data/card_type.dart';
+import 'data/transaction_type.dart';
 
 class Cards extends StatelessWidget {
   @override
@@ -33,9 +29,9 @@ class Cards extends StatelessWidget {
                 flex: 1,
                 child: Menu(
                     onSelectedChanged: (value, ctx) {
-                      DataContext.of<CardType>(ctx).setSelectedIndex(value);
+                      Pull.store<CardType>(ctx).setSelectedIndex(value);
                     },
-                    children: DataContext.of<CardType>(context)
+                    children: Pull.store<CardType>(context)
                         .items
                         .map((e) => MenuItem(e.name,
                             value: e.value,
@@ -45,30 +41,26 @@ class Cards extends StatelessWidget {
               ),
               Expanded(
                 flex: 2,
-                child: Observer(builder: (context) {
-                  int cardCode = DataContext.of<CardType>(context).selected?.value;
-                  return DataContext<TransactionType>(
-                      read: () {
-                        return TransactionType.getByCardCode(cardCode);
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(flex: 1, child: Transactions()),
-                          Expanded(
-                              flex: 1,
-                              child: Observer(builder: (context) {
-                                int transactionUid =
-                                    DataContext.of<TransactionType>(context).selected.uid;
-                                return DataContext<TransactionType>(
-                                    read: () {
-                                      return TransactionType.getByTransaction(
-                                          transactionUid);
-                                    },
-                                    child: Transactions());
-                              }))
-                        ],
-                      ));
-                }),
+                child: Push<TransactionType>(
+                    read: (context) {
+                      int cardCode = Pull.selected<CardType>(context).value;
+                      return () => TransactionType.getByCardCode(cardCode);
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(flex: 1, child: Transactions()),
+                        Expanded(
+                            flex: 1,
+                            child: Push<TransactionType>(
+                                read: (context) {
+                                  var transactionId =
+                                      Pull.selected<TransactionType>(context)?.uid;
+                                  return () =>
+                                      TransactionType.getByTransaction(transactionId);
+                                },
+                                child: Transactions()))
+                      ],
+                    )),
               ),
             ],
           ),
