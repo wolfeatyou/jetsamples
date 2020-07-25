@@ -74,10 +74,10 @@ typedef List<T> OnReadType<T>();
 typedef void OnUpdateType<T>(T value);
 typedef void OnActionType<T>(T value, String actionName);
 
-class DataStoreListWidget<T> extends InheritedWidget {
+class DataStore<T> extends InheritedWidget {
   final DataStoreList<T> data;
 
-  DataStoreListWidget(
+  DataStore(
       {Serializer<T> serializer,
       List<Operation> operations,
       Widget child,
@@ -89,13 +89,13 @@ class DataStoreListWidget<T> extends InheritedWidget {
         super(child: child);
 
   @override
-  bool updateShouldNotify(DataStoreListWidget oldWidget) {
+  bool updateShouldNotify(DataStore oldWidget) {
     return data != oldWidget.data;
   }
 
   static DataStoreList<T> of<T>(BuildContext context) {
-    final DataStoreListWidget inh =
-        context.dependOnInheritedWidgetOfExactType<DataStoreListWidget<T>>();
+    final DataStore inh =
+        context.dependOnInheritedWidgetOfExactType<DataStore<T>>();
     DataStoreList<T> data = inh?.data;
     if (data == null) {
       throw 'Data store not defined in hierarchy';

@@ -32,10 +32,10 @@ class Cards extends StatelessWidget {
                 flex: 1,
                 child: Menu(
                     onSelectedChanged: (value, ctx) {
-                      DataStoreListWidget.of<CardType>(ctx)
+                      DataStore.of<CardType>(ctx)
                           .setSelectedIndex(value);
                     },
-                    children: DataStoreListWidget.of<CardType>(context)
+                    children: DataStore.of<CardType>(context)
                         .items
                         .map((e) => MenuItem(e.name,
                             value: e.value,
@@ -46,9 +46,9 @@ class Cards extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Observer(builder: (context) {
-                  return DataStoreListWidget<TransactionType>(
+                  return DataStore<TransactionType>(
                       read: () => TransactionType.getByCardCode(
-                          DataStoreListWidget.of<CardType>(context)
+                          DataStore.of<CardType>(context)
                               .selected
                               ?.value),
                       child: Transactions());
