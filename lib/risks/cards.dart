@@ -47,27 +47,10 @@ class Cards extends StatelessWidget {
                 flex: 4,
                 child: Observer(builder: (context) {
                   return DataStoreListWidget<TransactionType>(
-                      read:(){
-                        return TransactionType.getByCardCode(DataStoreListWidget.of<CardType>(context)
-                            .selected
-                            ?.value);
-                      },
-                      update: (TransactionType value){
-
-                      },
-                      action:(TransactionType value, String action){
-
-                      },
-                      operations: [
-                        Operation(s.OperationType.read, 'card_transactions',
-                            parameters: [
-                              Parameter(
-                                  "cardCode",
-                                  DataStoreListWidget.of<CardType>(context)
-                                      .selected
-                                      ?.value)
-                            ])
-                      ],
+                      read: () => TransactionType.getByCardCode(
+                          DataStoreListWidget.of<CardType>(context)
+                              .selected
+                              ?.value),
                       child: Transactions());
                 }),
               )

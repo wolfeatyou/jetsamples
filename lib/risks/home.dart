@@ -9,9 +9,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return JetApp(
         child: DataStoreListWidget<CardType>(
-            read: (){
-              return CardType.getAll();
-            },
+            read: () => CardType.getAll(),
             child: Cards()));
   }
 }
