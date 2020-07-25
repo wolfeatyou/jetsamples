@@ -13,7 +13,7 @@ class Transactions extends StatelessWidget {
     // TODO: implement build
 
     return  ListView(
-          children: DataStore.of<TransactionType>(context).items.map((e) => _createItem(e)).toList(),
+          children: DataContext.of<TransactionType>(context).items.map((e) => _createItem(e)).toList(),
 
     );
 
