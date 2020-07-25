@@ -1,4 +1,5 @@
 import 'package:JetSamples/risks/transactions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jetkit/jetkit.dart';
@@ -32,8 +33,7 @@ class Cards extends StatelessWidget {
                 flex: 1,
                 child: Menu(
                     onSelectedChanged: (value, ctx) {
-                      DataStore.of<CardType>(ctx)
-                          .setSelectedIndex(value);
+                      DataStore.of<CardType>(ctx).setSelectedIndex(value);
                     },
                     children: DataStore.of<CardType>(context)
                         .items
@@ -46,11 +46,11 @@ class Cards extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Observer(builder: (context) {
+                  int cardCode = DataStore.of<CardType>(context).selected?.value;
                   return DataStore<TransactionType>(
-                      read: () => TransactionType.getByCardCode(
-                          DataStore.of<CardType>(context)
-                              .selected
-                              ?.value),
+                      read: () {
+                        return TransactionType.getByCardCode(cardCode);
+                      },
                       child: Transactions());
                 }),
               )
