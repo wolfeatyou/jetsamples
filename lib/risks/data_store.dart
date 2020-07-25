@@ -9,9 +9,23 @@ class Serializer<T> {
   }
 }
 
-class CardTypeSerializer implements Serializer<CardType> {
-  @override
-  CardType fromJson(Map<String, dynamic> json) {
+
+class CardType {
+  final String name;
+  final dynamic value;
+
+  CardType({this.name, this.value});
+
+  static List<CardType> getAll() {
+    return [
+      CardType.fromJson({"name": "Card name 1", "value": 0}),
+      CardType.fromJson({"name": "Card name 2", "value": 1}),
+      CardType.fromJson({"name": "Card name 3", "value": 2}),
+      CardType.fromJson({"name": "Card name 4", "value": 3})
+    ];
+  }
+
+  static CardType fromJson(Map<String, dynamic> json) {
     return CardType(name: json['name'], value: json['value']);
   }
 
@@ -23,36 +37,6 @@ class CardTypeSerializer implements Serializer<CardType> {
   }
 }
 
-class CardType {
-  final String name;
-  final dynamic value;
-
-  CardType({this.name, this.value});
-
-  static List<CardType> getAll() {
-    return [
-      CardTypeSerializer().fromJson({"name": "Card name 1", "value": 0}),
-      CardTypeSerializer().fromJson({"name": "Card name 2", "value": 1}),
-      CardTypeSerializer().fromJson({"name": "Card name 3", "value": 2}),
-      CardTypeSerializer().fromJson({"name": "Card name 4", "value": 3})
-    ];
-  }
-}
-
-class TransactionTypeSerializer implements Serializer<TransactionType> {
-  @override
-  TransactionType fromJson(Map<String, dynamic> json) {
-    return TransactionType(
-        description: json['description'], amount: json['amount']);
-  }
-
-  toJson(TransactionType card) {
-    return {
-      'description': card.description,
-      'amount': card.amount,
-    };
-  }
-}
 
 class TransactionType {
   final String description;
@@ -62,11 +46,23 @@ class TransactionType {
 
   static List<TransactionType> getByCardCode(int cardCode) {
     return [
-      TransactionTypeSerializer().fromJson(
+      TransactionType.fromJson(
           {"description": "Transaction for card $cardCode", "amount": 111.0}),
-      TransactionTypeSerializer().fromJson(
+      TransactionType.fromJson(
           {"description": "Transaction for card $cardCode", "amount": 222.0}),
     ];
+  }
+
+  static TransactionType fromJson(Map<String, dynamic> json) {
+    return TransactionType(
+        description: json['description'], amount: json['amount']);
+  }
+
+  toJson(TransactionType card) {
+    return {
+      'description': card.description,
+      'amount': card.amount,
+    };
   }
 }
 
