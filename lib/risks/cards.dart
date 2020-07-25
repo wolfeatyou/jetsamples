@@ -1,3 +1,4 @@
+import 'package:JetSamples/risks/data/institution_type.dart';
 import 'package:JetSamples/risks/transactions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,12 @@ class Cards extends StatelessWidget {
           children: [
             Logo('Cards', icon: Icons.apps),
             Expanded(child: Container()),
+            FlatButton(
+              child: Text('ok'),
+              onPressed: (){
+                Take.selected<InstitutionType>(context).value = 333;
+              },
+            )
           ],
         ),
         Expanded(
@@ -55,8 +62,9 @@ class Cards extends StatelessWidget {
                                 get: (context) {
                                   var transactionId =
                                       Take.selected<TransactionType>(context)?.uid;
+                                  var institution = Take.selected<InstitutionType>(context)?.value;
                                   return () =>
-                                      TransactionType.getRelated(transactionId);
+                                      TransactionType.getRelated(transactionId, institution);
                                 },
                                 child: Transactions()))
                       ],

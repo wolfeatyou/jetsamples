@@ -1,4 +1,5 @@
-import 'package:JetSamples/risks/data/base/data_store.dart';
+
+import 'package:JetSamples/risks/data/institution_type.dart';
 
 class CardType {
   final String name;

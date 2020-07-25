@@ -21,12 +21,12 @@ class TransactionType {
     ];
   }
 
-  static List<TransactionType> getRelated(int uid) {
+  static List<TransactionType> getRelated(int uid, int inst) {
     return [
       TransactionType.fromJson(
-          {"description": "Sub Transaction for $uid", "amount": 111.0, "uid": 0}),
+          {"description": "Sub Transaction for $uid and inst $inst", "amount": 111.0, "uid": 0}),
       TransactionType.fromJson(
-          {"description": "Sub Transaction for $uid", "amount": 222.0, "uid": 1}),
+          {"description": "Sub Transaction for $uid and inst $inst", "amount": 222.0, "uid": 1}),
     ];
   }
 

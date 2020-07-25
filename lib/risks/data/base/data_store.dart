@@ -63,6 +63,15 @@ class ObservableProvider<T> extends StatelessWidget{
   }
 }
 
+class ObservableProviders extends StatelessWidget{
+  final List<DataStoreList> list;
+  ObservableProviders({this.list, child});
+
+  @override
+  Widget build(BuildContext context) {
+     throw "not implemented";
+  }
+}
 class Take{
 
   static DataStoreList<T> list<T>(BuildContext context){
