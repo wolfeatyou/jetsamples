@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
                 Border(bottom: BorderSide(width: 1, color: Color(0xffC6CACC)))),
         child: m.Column(mainAxisSize: MainAxisSize.min, children: [
           JetToolbar(size: 72, children: <Widget>[
-            Logo('Profile', Icon(Icons.keyboard)),
+            Logo('Profile'),
             Expanded(
               child: Container(),
             ),

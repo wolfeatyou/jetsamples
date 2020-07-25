@@ -32,7 +32,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
             size: 72,
             direction: Axis.horizontal,
             children: <Widget>[
-              Logo('Profile', Icon(Icons.keyboard)),
+              Logo('Profile'),
               Expanded(
                 child: Container(),
               ),
