@@ -7,13 +7,19 @@ part 'data_store_list.g.dart';
 class DataStoreList<T> = _DataStoreList<T> with _$DataStoreList;
 
 abstract class _DataStoreList<T> with Store {
-  final ReadOperationType<T> onRead;
+  @observable
+   ReadOperationType<T> onRead;
   final UpdateOperationType<T> onUpdate;
   final CustomOperationType<T> onCustom;
   final BuildContext context;
 
   @observable
   int selectedIndex = 0;
+
+  @action
+  setOnRead(ReadOperationType<T> r){
+    onRead = r;
+  }
 
   _DataStoreList({this.onRead, this.onUpdate, this.onCustom, this.context});
 
@@ -38,4 +44,6 @@ abstract class _DataStoreList<T> with Store {
   void setSelectedIndex(value) {
     selectedIndex = value;
   }
+
+
 }

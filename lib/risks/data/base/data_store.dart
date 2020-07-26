@@ -23,13 +23,13 @@ class DataContextInherited<T> extends InheritedWidget {
 
   @override
   bool updateShouldNotify(DataContextInherited oldWidget) {
-    return data != oldWidget.data;
+    return true;
   }
 
 
 }
 
-class ObservableProvider<T> extends StatelessWidget{
+class ObservableProvider<T> extends StatefulWidget{
   final Widget child;
   final ReadOperationObservable get;
   final UpdateOperationObservable set;
@@ -37,20 +37,7 @@ class ObservableProvider<T> extends StatelessWidget{
   ObservableProvider({this.child, this.get, this.set, this.run});
 
   @override
-  Widget build(BuildContext context) {
-    return Observer(
-      name: "DataContext observer $T",
-      builder: (context) {
-        ReadOperationType<T> readOperation = this.get!=null?this.get(context):null;
-        UpdateOperationType<T> updateOperation = this.set!=null?this.set(context):null;
-        CustomOperationType<T> customOperation = this.run!=null?this.run(context):null;
-        return DataContextInherited<T>(
-          data: DataStoreList<T>(onRead: readOperation, onUpdate: updateOperation, onCustom: customOperation, context: context),
-          child: child,
-        );
-      }
-    );
-  }
+  _ObservableProviderState<T> createState() => _ObservableProviderState<T>();
 
   static DataStoreList<T> _of<T>(BuildContext context) {
     final DataContextInherited inh =
@@ -60,6 +47,49 @@ class ObservableProvider<T> extends StatelessWidget{
       throw 'Data store not defined in hierarchy';
     }
     return data;
+  }
+}
+
+class _ObservableProviderState<T> extends State<ObservableProvider<T>> {
+  DataStoreList<T> store;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Observer(
+      name: "DataContext observer $T",
+      builder: (context) {
+
+        ReadOperationType<T> readOperation = this.widget.get!=null?this.widget.get(context):null;
+        UpdateOperationType<T> updateOperation = this.widget.set!=null?this.widget.set(context):null;
+        CustomOperationType<T> customOperation = this.widget.run!=null?this.widget.run(context):null;
+        if(store==null) {
+          store = DataStoreList<T>(onRead: readOperation,
+              onUpdate: updateOperation,
+              onCustom: customOperation,
+              context: context);
+        }
+        else{
+          store.setOnRead(readOperation);
+        }
+        return DataContextInherited<T>(
+          data: store,
+          child: widget.child,
+        );
+      }
+    );
   }
 }
 

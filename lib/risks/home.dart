@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
     return JetApp(
         child: ObservableProvider<InstitutionType>(
       get: (context) => () => [InstitutionType(value: 555)].toList(),
-      child: ObservableProvider<CardType>(
+            child: ObservableProvider<CardType>(
           get: (context) => () => CardType.getAll(), child: Cards()),
     ));
   }

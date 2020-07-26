@@ -22,6 +22,21 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
           Computed<T>(() => super.selected, name: '_DataStoreList.selected'))
       .value;
 
+  final _$onReadAtom = Atom(name: '_DataStoreList.onRead');
+
+  @override
+  ReadOperationType<T> get onRead {
+    _$onReadAtom.reportRead();
+    return super.onRead;
+  }
+
+  @override
+  set onRead(ReadOperationType<T> value) {
+    _$onReadAtom.reportWrite(value, super.onRead, () {
+      super.onRead = value;
+    });
+  }
+
   final _$selectedIndexAtom = Atom(name: '_DataStoreList.selectedIndex');
 
   @override
@@ -41,6 +56,17 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
       ActionController(name: '_DataStoreList');
 
   @override
+  dynamic setOnRead(ReadOperationType<T> r) {
+    final _$actionInfo = _$_DataStoreListActionController.startAction(
+        name: '_DataStoreList.setOnRead');
+    try {
+      return super.setOnRead(r);
+    } finally {
+      _$_DataStoreListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setSelectedIndex(dynamic value) {
     final _$actionInfo = _$_DataStoreListActionController.startAction(
         name: '_DataStoreList.setSelectedIndex');
@@ -54,6 +80,7 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
   @override
   String toString() {
     return '''
+onRead: ${onRead},
 selectedIndex: ${selectedIndex},
 items: ${items},
 selected: ${selected}
