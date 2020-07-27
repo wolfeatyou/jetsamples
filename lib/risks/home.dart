@@ -11,10 +11,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JetApp(
-        child: ObservableProvider<InstitutionType>(
+        child: ObservableStore<InstitutionType>(
             get: (context, props) => () => [InstitutionType(value: 555)].toList(),
             child: Builder(builder: (context) {
-              return ObservableProvider<CardType>(
+              return ObservableStore<CardType>(
                   get: (context, observe) {
                     var c = observe(Take.selected<InstitutionType>(context).value);
                     return () {

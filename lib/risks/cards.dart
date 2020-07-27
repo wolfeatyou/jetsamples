@@ -94,7 +94,7 @@ class _CardsState extends State<Cards> {
               ),
               Expanded(
                 flex: 2,
-                child: ObservableProvider<TransactionType>(
+                child: ObservableStore<TransactionType>(
                     get: (context, observe) {
                       var c = observe(Take.selected<CardType>(context).value);
                       var i = observe(Take.selected<InstitutionType>(context).value);
@@ -105,7 +105,7 @@ class _CardsState extends State<Cards> {
                            Expanded(flex: 1, child: Transactions()),
                             Expanded(
                                 flex: 1,
-                                child: ObservableProvider<TransactionType>(
+                                child: ObservableStore<TransactionType>(
                                     get: (context, observe) {
                                        var c = observe(Take.selected<CardType>(context).value);
                                        var t = observe(Take.selected<TransactionType>(context)?.uid);

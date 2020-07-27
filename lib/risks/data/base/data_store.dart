@@ -31,16 +31,16 @@ class DataContextInherited<T> extends InheritedWidget {
   }
 }
 
-class ObservableProvider<T> extends StatefulWidget {
+class ObservableStore<T> extends StatefulWidget {
   final Widget child;
   final ReadOperationObservable get;
   final UpdateOperationObservable set;
   final CustomOperationObservable run;
 
-  ObservableProvider({this.child, this.get, this.set, this.run});
+  ObservableStore({this.child, this.get, this.set, this.run});
 
   @override
-  _ObservableProviderState<T> createState() => _ObservableProviderState<T>();
+  _ObservableStoreState<T> createState() => _ObservableStoreState<T>();
 
   static DataStoreList<T> _of<T>(BuildContext context) {
     final DataContextInherited inh =
@@ -53,7 +53,7 @@ class ObservableProvider<T> extends StatefulWidget {
   }
 }
 
-class _ObservableProviderState<T> extends State<ObservableProvider<T>> {
+class _ObservableStoreState<T> extends State<ObservableStore<T>> {
   DataStoreList<T> store;
 
   @override
@@ -108,10 +108,10 @@ class ObservableProviders extends StatelessWidget {
 
 class Take {
   static DataStoreList<T> list<T>(BuildContext context) {
-    return ObservableProvider._of<T>(context);
+    return ObservableStore._of<T>(context);
   }
 
   static T selected<T>(BuildContext context) {
-    return ObservableProvider._of<T>(context).selected;
+    return ObservableStore._of<T>(context).selected;
   }
 }
