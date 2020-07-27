@@ -8,9 +8,25 @@ import 'data/base/data_store.dart';
 import 'data/card_type.dart';
 import 'data/transaction_type.dart';
 
-class Cards extends StatelessWidget {
+class Cards extends StatefulWidget {
+  @override
+  _CardsState createState() => _CardsState();
+}
+
+class _CardsState extends State<Cards> {
+
+  int _rebuilds;
+
+  @override
+  void initState() {
+    super.initState();
+    // TODO: implement initState
+    _rebuilds = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return JetPanel(
         child: Column(
@@ -21,17 +37,28 @@ class Cards extends StatelessWidget {
           children: [
             Logo('Cards', icon: Icons.apps),
             Expanded(child: Container()),
+            Text('rebuilds: $_rebuilds'),
+            FlatButton(
+              child: Text('rebuild'),
+              onPressed: (){
+                setState(() {
+                  _rebuilds = _rebuilds + 1;
+                });
+              },
+            ),
             FlatButton(
               child: Text('ok'),
               onPressed: (){
                 var val = Take.selected<InstitutionType>(context);
-                if(val.value == 555) {
-                  val.setValue
-                      .call([333]);
-                }
-                else{
-                      val.setValue
-                      .call([555]);
+                if(val!=null) {
+                  if (val.value == 555) {
+                    val.setValue
+                        .call([333]);
+                  }
+                  else {
+                    val.setValue
+                        .call([555]);
+                  }
                 }
               },
             )
@@ -58,24 +85,23 @@ class Cards extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ObservableProvider<TransactionType>(
-                    get: (context) {
-                      int cardCode = Take.selected<CardType>(context).value;
-                      var institution = Take.selected<InstitutionType>(context)?.value;
-                      return () => TransactionType.getByCardCode(cardCode, institution);
+                    get: (context, props) {
+                      props["card"] = Take.selected<CardType>(context).value;
+                      props["inst"] = Take.selected<InstitutionType>(context).value;
+                      return () => TransactionType.getByCardCode(Take.selected<CardType>(context).value, Take.selected<InstitutionType>(context).value);
                     },
                     child:Row(
                           children: [
-                            Expanded(flex: 1, child: Transactions()),
+                           Expanded(flex: 1, child: Transactions()),
                             Expanded(
                                 flex: 1,
                                 child: ObservableProvider<TransactionType>(
-                                    get: (context) {
-                                      int cardCode = Take.selected<CardType>(context).value;
-                                      var transactionId =
-                                          Take.selected<TransactionType>(context)?.uid;
-                                      var institution = Take.selected<InstitutionType>(context)?.value;
+                                    get: (context, props) {
+                                       var c = props['card'] = Take.selected<CardType>(context).value;
+                                       props['trans'] = Take.selected<TransactionType>(context)?.uid;
+                                       props['inst'] = Take.selected<InstitutionType>(context)?.value;
                                       return () =>
-                                          TransactionType.getRelated(transactionId, institution, cardCode);
+                                          TransactionType.getRelated(Take.selected<TransactionType>(context)?.uid, Take.selected<InstitutionType>(context)?.value, c);
                                     },
                                     child: Transactions()))
                           ],

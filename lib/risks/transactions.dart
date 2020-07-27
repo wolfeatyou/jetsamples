@@ -7,7 +7,14 @@ import 'data/base/data_store.dart';
 import 'data/base/data_store_list.dart';
 import 'data/transaction_type.dart';
 
-class Transactions extends StatelessWidget {
+class Transactions extends StatefulWidget {
+  @override
+  _TransactionsState createState() => _TransactionsState();
+
+  Transactions();
+}
+
+class _TransactionsState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -17,8 +24,6 @@ class Transactions extends StatelessWidget {
           .toList(),
     );
   }
-
-  Transactions();
 
   Widget _createItem(TransactionType transaction, BuildContext context) {
     return GestureDetector(

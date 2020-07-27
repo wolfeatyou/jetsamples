@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'data_store_list.dart';
 
-typedef ReadOperationType<T> ReadOperationObservable<T>(BuildContext context);
+typedef ReadOperationType<T> ReadOperationObservable<T>(BuildContext context, Map<String, dynamic> rels);
 typedef UpdateOperationType<T> UpdateOperationObservable<T>(BuildContext context);
 typedef CustomOperationType<T> CustomOperationObservable<T>(BuildContext context);
 
@@ -24,6 +24,7 @@ class DataContextInherited<T> extends InheritedWidget {
   @override
   bool updateShouldNotify(DataContextInherited oldWidget) {
     return true;
+    //return data != oldWidget.data;
   }
 
 
@@ -67,29 +68,33 @@ class _ObservableProviderState<T> extends State<ObservableProvider<T>> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Observer(
-      name: "DataContext observer $T",
-      builder: (context) {
+  Widget build(BuildContext context_out) {
 
-        ReadOperationType<T> readOperation = this.widget.get!=null?this.widget.get(context):null;
-        UpdateOperationType<T> updateOperation = this.widget.set!=null?this.widget.set(context):null;
-        CustomOperationType<T> customOperation = this.widget.run!=null?this.widget.run(context):null;
-        if(store==null) {
-          store = DataStoreList<T>(onRead: readOperation,
-              onUpdate: updateOperation,
-              onCustom: customOperation,
-              context: context);
-        }
-        else{
-          store.setOnRead(readOperation);
-        }
-        return DataContextInherited<T>(
-          data: store,
-          child: widget.child,
+    if(store == null){
+      Map<String, dynamic> props = {};
+      ReadOperationType<T> readOperation = this.widget.get!=null?this.widget.get(context, props):null;
+      UpdateOperationType<T> updateOperation = this.widget.set!=null?this.widget.set(context):null;
+      CustomOperationType<T> customOperation = this.widget.run!=null?this.widget.run(context):null;
+
+      store = DataStoreList<T>(onRead: readOperation,
+          props: props,
+          onUpdate: updateOperation,
+          onCustom: customOperation,
+          context: context);
+    }
+
+        return Observer(
+          builder: (context) {
+            Map<String, dynamic> props = {};
+            ReadOperationType<T> readOperation = this.widget.get!=null?this.widget.get(context, props):null;
+            store.onRead = readOperation;
+            store.setProps(props);
+            return DataContextInherited<T>(
+              data: store,
+              child: widget.child,
+            );
+          }
         );
-      }
-    );
   }
 }
 

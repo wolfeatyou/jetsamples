@@ -7,28 +7,42 @@ part 'data_store_list.g.dart';
 class DataStoreList<T> = _DataStoreList<T> with _$DataStoreList;
 
 abstract class _DataStoreList<T> with Store {
-  @observable
-   ReadOperationType<T> onRead;
+
+  ReadOperationType<T> onRead;
   final UpdateOperationType<T> onUpdate;
   final CustomOperationType<T> onCustom;
   final BuildContext context;
 
+
+
+  @observable
+  Map<String, dynamic> props;
+
+  @action setProps(Map<String, dynamic> np){
+    props = np;
+  }
+
   @observable
   int selectedIndex = 0;
 
-  @action
-  setOnRead(ReadOperationType<T> r){
-    onRead = r;
+  _DataStoreList({this.onRead, this.onUpdate, this.onCustom,  this.props, this.context}) {
+    _items = onRead();
+
+    reaction((_) => props.values.toList().toString(), (msg) {
+      print(props.values.toList().toString());
+      if (onRead != null) {
+        _items = onRead();
+      }
+    });
   }
 
-  _DataStoreList({this.onRead, this.onUpdate, this.onCustom, this.context});
+  @observable
+  List<T> _items = [];
 
   @computed
   List<T> get items {
-    if (onRead != null) {
-      return onRead();
-    }
-    return [];
+
+    return _items;
   }
 
   @computed
@@ -44,6 +58,4 @@ abstract class _DataStoreList<T> with Store {
   void setSelectedIndex(value) {
     selectedIndex = value;
   }
-
-
 }

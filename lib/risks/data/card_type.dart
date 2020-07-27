@@ -7,9 +7,9 @@ class CardType {
 
   CardType({this.name, this.value});
 
-  static List<CardType> getAll() {
+  static List<CardType> getAll(int tt) {
     return [
-      CardType.fromJson({"name": "Card name 1", "value": 0}),
+      CardType.fromJson({"name": "$tt - Card name 1", "value": 0}),
       CardType.fromJson({"name": "Card name 2", "value": 1}),
       CardType.fromJson({"name": "Card name 3", "value": 2}),
       CardType.fromJson({"name": "Card name 4", "value": 3})

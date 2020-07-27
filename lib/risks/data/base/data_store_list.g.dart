@@ -22,18 +22,18 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
           Computed<T>(() => super.selected, name: '_DataStoreList.selected'))
       .value;
 
-  final _$onReadAtom = Atom(name: '_DataStoreList.onRead');
+  final _$propsAtom = Atom(name: '_DataStoreList.props');
 
   @override
-  ReadOperationType<T> get onRead {
-    _$onReadAtom.reportRead();
-    return super.onRead;
+  Map<String, dynamic> get props {
+    _$propsAtom.reportRead();
+    return super.props;
   }
 
   @override
-  set onRead(ReadOperationType<T> value) {
-    _$onReadAtom.reportWrite(value, super.onRead, () {
-      super.onRead = value;
+  set props(Map<String, dynamic> value) {
+    _$propsAtom.reportWrite(value, super.props, () {
+      super.props = value;
     });
   }
 
@@ -52,15 +52,30 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
     });
   }
 
+  final _$_itemsAtom = Atom(name: '_DataStoreList._items');
+
+  @override
+  List<T> get _items {
+    _$_itemsAtom.reportRead();
+    return super._items;
+  }
+
+  @override
+  set _items(List<T> value) {
+    _$_itemsAtom.reportWrite(value, super._items, () {
+      super._items = value;
+    });
+  }
+
   final _$_DataStoreListActionController =
       ActionController(name: '_DataStoreList');
 
   @override
-  dynamic setOnRead(ReadOperationType<T> r) {
+  dynamic setProps(Map<String, dynamic> np) {
     final _$actionInfo = _$_DataStoreListActionController.startAction(
-        name: '_DataStoreList.setOnRead');
+        name: '_DataStoreList.setProps');
     try {
-      return super.setOnRead(r);
+      return super.setProps(np);
     } finally {
       _$_DataStoreListActionController.endAction(_$actionInfo);
     }
@@ -80,7 +95,7 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
   @override
   String toString() {
     return '''
-onRead: ${onRead},
+props: ${props},
 selectedIndex: ${selectedIndex},
 items: ${items},
 selected: ${selected}

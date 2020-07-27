@@ -1,6 +1,7 @@
 import 'package:JetSamples/risks/data/base/data_store.dart';
 import 'package:JetSamples/risks/data/institution_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jetkit/jetkit.dart';
 
 import 'cards.dart';
@@ -11,9 +12,17 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return JetApp(
         child: ObservableProvider<InstitutionType>(
-      get: (context) => () => [InstitutionType(value: 555)].toList(),
-            child: ObservableProvider<CardType>(
-          get: (context) => () => CardType.getAll(), child: Cards()),
-    ));
+            get: (context, props) => () => [InstitutionType(value: 555)].toList(),
+            child: Builder(builder: (context) {
+              return ObservableProvider<CardType>(
+                  get: (context, props) {
+                    props['Card'] = Take.selected<InstitutionType>(context).value;
+                    return () {
+                      return CardType.getAll(
+                          Take.selected<InstitutionType>(context).value);
+                    };
+                  },
+                  child: Cards());
+            })));
   }
 }
