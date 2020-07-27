@@ -15,11 +15,10 @@ class Home extends StatelessWidget {
             get: (context, props) => () => [InstitutionType(value: 555)].toList(),
             child: Builder(builder: (context) {
               return ObservableProvider<CardType>(
-                  get: (context, props) {
-                    props['Card'] = Take.selected<InstitutionType>(context).value;
+                  get: (context, observe) {
+                    var c = observe(Take.selected<InstitutionType>(context).value);
                     return () {
-                      return CardType.getAll(
-                          Take.selected<InstitutionType>(context).value);
+                      return CardType.getAll(c);
                     };
                   },
                   child: Cards());

@@ -61,6 +61,16 @@ class _CardsState extends State<Cards> {
                   }
                 }
               },
+            ),
+            FlatButton(
+              child: Text('ok _ no'),
+              onPressed: (){
+                var val = Take.selected<InstitutionType>(context);
+                if(val!=null) {
+                  val.setValue
+                      .call([val.value]);
+                }
+              },
             )
           ],
         ),
@@ -85,10 +95,10 @@ class _CardsState extends State<Cards> {
               Expanded(
                 flex: 2,
                 child: ObservableProvider<TransactionType>(
-                    get: (context, props) {
-                      props["card"] = Take.selected<CardType>(context).value;
-                      props["inst"] = Take.selected<InstitutionType>(context).value;
-                      return () => TransactionType.getByCardCode(Take.selected<CardType>(context).value, Take.selected<InstitutionType>(context).value);
+                    get: (context, observe) {
+                      var c = observe(Take.selected<CardType>(context).value);
+                      var i = observe(Take.selected<InstitutionType>(context).value);
+                      return () => TransactionType.getByCardCode(c, i);
                     },
                     child:Row(
                           children: [
@@ -96,14 +106,19 @@ class _CardsState extends State<Cards> {
                             Expanded(
                                 flex: 1,
                                 child: ObservableProvider<TransactionType>(
-                                    get: (context, props) {
-                                       var c = props['card'] = Take.selected<CardType>(context).value;
-                                       props['trans'] = Take.selected<TransactionType>(context)?.uid;
-                                       props['inst'] = Take.selected<InstitutionType>(context)?.value;
-                                      return () =>
-                                          TransactionType.getRelated(Take.selected<TransactionType>(context)?.uid, Take.selected<InstitutionType>(context)?.value, c);
+                                    get: (context, observe) {
+                                       var c = observe(Take.selected<CardType>(context).value);
+                                       var t = observe(Take.selected<TransactionType>(context)?.uid);
+                                       var i = observe(Take.selected<InstitutionType>(context)?.value);
+                                          return () =>
+                                          TransactionType.getRelated(t, i, c);
                                     },
-                                    child: Transactions()))
+                                    child: Column(
+                                      children: [
+                                        Expanded(flex:1, child: Transactions()),
+                                        Expanded(flex:1, child: Transactions())
+                                      ],
+                                    )))
                           ],
                         )
 
