@@ -96,9 +96,9 @@ class _CardsState extends State<Cards> {
                 flex: 2,
                 child: ObservableStore<TransactionType>(
                     get: (context, observe) {
-                      var c = observe(Take.selected<CardType>(context).value);
-                      var i = observe(Take.selected<InstitutionType>(context).value);
-                      return () => TransactionType.getByCardCode(c, i);
+                      var cId = observe(Take.selected<CardType>(context).value);
+                      var iId = observe(Take.selected<InstitutionType>(context).value);
+                      return () => TransactionType.getByCardCode(cId, iId);
                     },
                     child:Row(
                           children: [
@@ -107,11 +107,11 @@ class _CardsState extends State<Cards> {
                                 flex: 1,
                                 child: ObservableStore<TransactionType>(
                                     get: (context, observe) {
-                                       var c = observe(Take.selected<CardType>(context).value);
-                                       var t = observe(Take.selected<TransactionType>(context)?.uid);
-                                       var i = observe(Take.selected<InstitutionType>(context)?.value);
+                                       var cId = observe(Take.selected<CardType>(context).value);
+                                       var tId = observe(Take.selected<TransactionType>(context)?.uid);
+                                       var iId = observe(Take.selected<InstitutionType>(context)?.value);
                                           return () =>
-                                          TransactionType.getRelated(t, i, c);
+                                          TransactionType.getRelated(tId, iId, cId);
                                     },
                                     child: Column(
                                       children: [
