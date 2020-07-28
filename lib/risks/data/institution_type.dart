@@ -16,3 +16,20 @@ class InstitutionType {
     _value.value = value;
   }
 }
+
+
+class SelectedValueType {
+  SelectedValueType({String value}) :_value = Observable(value) {
+    setValue = Action(_setValue);
+  }
+
+  final _value;
+  String get value => _value.value;
+
+  set value(String newValue) => _value.value = newValue;
+  Action setValue;
+
+  void _setValue(String value) {
+    _value.value = value;
+  }
+}

@@ -17,11 +17,15 @@ class Transactions extends StatefulWidget {
 class _TransactionsState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: Take.list<TransactionType>(context)
-          .items
-          .map((e) => _createItem(e, context))
-          .toList(),
+    return Observer(
+      builder: (context) {
+        return ListView(
+          children: Take.list<TransactionType>(context)
+              .items
+              .map((e) => _createItem(e, context))
+              .toList(),
+        );
+      }
     );
   }
 

@@ -26,7 +26,7 @@ class DataContextInherited<T> extends InheritedWidget {
 
   @override
   bool updateShouldNotify(DataContextInherited oldWidget) {
-    return true;
+    return false;
     //return data != oldWidget.data;
   }
 }
