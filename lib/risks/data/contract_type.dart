@@ -30,7 +30,7 @@ class ContractType {
   }
 }
 
-class ContractTypeProvider {
+class ContractProvider {
 
   static ObservableStore<CardType> cardContracts({child}){
     return ObservableStore<CardType>(

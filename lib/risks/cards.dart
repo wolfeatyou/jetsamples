@@ -124,7 +124,7 @@ class _CardsState extends State<Cards> {
                         Case(value: 'transactions', child: _transactionsTab()),
                         Case(
                             value: 'contracts',
-                            child: ContractTypeProvider.cardContracts(child: Contracts()))
+                            child: ContractProvider.cardContracts(child: Contracts()))
                       ],
                     )),
               ),
@@ -132,14 +132,14 @@ class _CardsState extends State<Cards> {
   }
 
   Widget _transactionsTab() {
-    return TransactionTypeProvider.cardTransactions(
+    return TransactionProvider.cardTransactions(
         child: Row(
         children: [
           Expanded(flex: 1, child: Transactions()),
           if (!_hideLast)
             Expanded(
                 flex: 1,
-                child: TransactionTypeProvider.subTransactions(
+                child: TransactionProvider.subTransactions(
                     child: Column(
                   children: [
                     Expanded(flex: 1, child: Transactions()),
