@@ -31,125 +31,122 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    return ObservableStore<SelectedValueType>(
+    return ObservableStore.createOf<SelectedValueType>(
         get: (context, o) => () => [SelectedValueType(value: 'transactions')].toList(),
-        child: Observer(builder: (context) {
-          return Panel.withTop(
-            top: JetToolbar(
-              color: Colors.lightBlue,
-              size: 70,
-              children: [
-                Logo('Cards', icon: Icons.apps),
-                Expanded(child: Container()),
-                Text('rebuilds: $_rebuilds'),
-                FlatButton(
-                  child: Text('rebuild'),
-                  onPressed: () {
-                    setState(() {
-                      _rebuilds = _rebuilds + 1;
-                    });
-                  },
-                ),
-                FlatButton(
-                  child: Text('ok'),
-                  onPressed: () {
-                    var val = Take.selected<InstitutionType>(context);
-                    if (val != null) {
-                      if (val.value == 555) {
-                        val.setValue.call([333]);
-                      } else {
-                        val.setValue.call([555]);
+        builder: (context) => Panel.withTop(
+              top: JetToolbar(
+                children: [
+                  Logo('Cards', icon: Icons.apps),
+                  Expanded(child: Container()),
+                  Text('rebuilds: $_rebuilds'),
+                  FlatButton(
+                    child: Text('rebuild'),
+                    onPressed: () {
+                      setState(() {
+                        _rebuilds = _rebuilds + 1;
+                      });
+                    },
+                  ),
+                  FlatButton(
+                    child: Text('ok'),
+                    onPressed: () {
+                      var val = Take.selectedOf<InstitutionType>(context);
+                      if (val != null) {
+                        if (val.value == 555) {
+                          val.setValue.call([333]);
+                        } else {
+                          val.setValue.call([555]);
+                        }
                       }
-                    }
-                  },
-                ),
-                FlatButton(
-                  child: Text('ok _ no'),
-                  onPressed: () {
-                    var val = Take.selected<InstitutionType>(context);
-                    if (val != null) {
-                      val.setValue.call([val.value]);
-                    }
-                  },
-                ),
-                FlatButton(
-                  child: Text('hide'),
-                  onPressed: () {
-                    setState(() {
-                      _hideLast = !_hideLast;
-                    });
-                  },
-                )
-              ],
-            ),
-            body: Panel.withLeft(
-              left: Menu(
-                  onSelectedChanged: (value, ctx) {
-                    Take.list<CardType>(context).setSelectedIndex(value);
-                  },
-                  children: Take.list<CardType>(context)
+                    },
+                  ),
+                  FlatButton(
+                    child: Text('ok _ no'),
+                    onPressed: () {
+                      var val = Take.selectedOf<InstitutionType>(context);
+                      if (val != null) {
+                        val.setValue.call([val.value]);
+                      }
+                    },
+                  ),
+                  FlatButton(
+                    child: Text('hide'),
+                    onPressed: () {
+                      setState(() {
+                        _hideLast = !_hideLast;
+                      });
+                    },
+                  )
+                ],
+                color: Colors.lightBlue,
+                size: 70,
+              ),
+              body: Panel.withLeft(
+                left: Menu(
+                  children: Take.listOf<CardType>(context)
                       .items
                       .map((e) => MenuItem(e.name,
                           value: e.value,
                           description: "description...",
                           iconData: Icons.payment))
-                      .toList()),
-              body: Panel.withTop(
-                  top: JetTabs.labels(
-                      onSelect: (value, context) {
-                        Take.selected<SelectedValueType>(context).setValue.call([value]);
-                      },
-                     /* scheme:
-                          JetTabsColorScheme.defaultScheme(JetTheme.of(context).palette)
-                              .scheme,*/
+                      .toList(),
+                  onSelectedChanged: (value, ctx) {
+                    Take.listOf<CardType>(context).setSelectedIndex(value);
+                  },
+                ),
+                body: Panel.withTop(
+                    top: JetTabs.simpleTabs(
                       direction: Axis.horizontal,
-                      items: [
-                        JetTabEntry(
+                      tabs: [
+                        JetTab(
                             text: "transactions",
                             value: "transactions",
                             selected: true,
                             icon: Icons.transform),
-                        JetTabEntry(
+                        JetTab(
                             text: "contracts",
                             value: "contracts",
                             selected: true,
                             icon: Icons.store),
-                        JetTabEntry(
+                        JetTab(
                             text: "addresses",
                             value: "addresses",
                             selected: true,
                             icon: Icons.home)
-                      ]),
-                  body: SwitchValue(
-                    value: Take.selected<SelectedValueType>(context).value,
-                    cases: [
-                      Case(value: 'transactions', child: _transactionsTab()),
-                      Case(
-                          value: 'contracts',
-                          child: ContractTypeStore.cardContracts(child: Contracts()))
-                    ],
-                  )),
-            ),
-          );
-        }));
+                      ],
+                      onSelect: (value, context) {
+                        Take.valueOf<SelectedValueType>(context).setValue.call([value]);
+                      },
+                    ),
+                    body: SwitchChild(
+                      value: Take.valueOf<SelectedValueType>(context).value,
+                      cases: [
+                        Case(value: 'transactions', child: _transactionsTab()),
+                        Case(
+                            value: 'contracts',
+                            child: ContractTypeProvider.cardContracts(child: Contracts()))
+                      ],
+                    )),
+              ),
+            ));
   }
 
   Widget _transactionsTab() {
-    return TransactionTypeStore.cardTransactions(
+    return TransactionTypeProvider.cardTransactions(
         child: Row(
-      children: [
-        Expanded(flex: 1, child: Transactions()),
-        if (!_hideLast)
-          Expanded(
-              flex: 1,
-              child: TransactionTypeStore.subTransactions(
-                  child: Column(
-                children: [
-                  Expanded(flex: 1, child: Transactions()),
-                  Expanded(flex: 1, child: Transactions())
-                ],
-              ))),
-      ],
+        children: [
+          Expanded(flex: 1, child: Transactions()),
+          if (!_hideLast)
+            Expanded(
+                flex: 1,
+                child: TransactionTypeProvider.subTransactions(
+                    child: Column(
+                  children: [
+                    Expanded(flex: 1, child: Transactions()),
+                    Expanded(flex: 1, child: Transactions())
+                  ],
+                ))),
+        ],
     ));
   }
 }

@@ -43,19 +43,19 @@ class _HomeState extends State<Home> {
                             shape: CircleBorder(),
                           ),
                         ),
-                        JetTabs.squareButtons(
+                        JetTabs.squareButtonsTabs(
                           size: 84,
                           direction: Axis.vertical,
                           itemScheme: JetButtonColorScheme.whiteScheme(MaterialJetThemePalette.defaultPalette()).scheme,
-                          items: [
-                            JetTabEntry(text: 'Messages', icon: Icons.message,  value: 'kit_docs_index'),
-                            JetTabEntry(text: 'Stats', icon: Icons.shop_two,  value: 'profile'),
-                            JetTabEntry(text: 'Apps', icon: Icons.apps),
-                            JetTabEntry(
+                          tabs: [
+                            JetTab(text: 'Messages', icon: Icons.message,  value: 'kit_docs_index'),
+                            JetTab(text: 'Stats', icon: Icons.shop_two,  value: 'profile'),
+                            JetTab(text: 'Apps', icon: Icons.apps),
+                            JetTab(
                                 text: "Tasks", icon: Icons.assignment_turned_in),
-                            JetTabEntry(text: "Sent", icon: Icons.send),
-                            JetTabEntry(text: "Stats", icon: Icons.shop_two),
-                            JetTabEntry(text: "Apps", icon: Icons.apps),
+                            JetTab(text: "Sent", icon: Icons.send),
+                            JetTab(text: "Stats", icon: Icons.shop_two),
+                            JetTab(text: "Apps", icon: Icons.apps),
                           ],
                           onSelect: (value, ctx){
                             if(value !=null ) navigatorKey.currentState.pushReplacementNamed(value);

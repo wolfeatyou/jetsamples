@@ -75,56 +75,56 @@ class TextStylesPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                JetTabs.squareButtons(
-                    size: c.px(100), items: [
-                  JetTabEntry(
+                JetTabs.squareButtonsTabs(
+                    size: c.px(100), tabs: [
+                  JetTab(
                       text: 'All', selected: true, icon: Icons.all_inclusive),
-                  JetTabEntry(text: 'Video', icon: Icons.videocam),
-                  JetTabEntry(
+                  JetTab(text: 'Video', icon: Icons.videocam),
+                  JetTab(
                       text: 'Fibonachi Fibonachi', icon: Icons.settings),
-                  JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
-                  JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
-                  JetTabEntry(text: 'Images', icon: Icons.image)
+                  JetTab(text: 'Fibonachi', icon: Icons.settings),
+                  JetTab(text: 'Tools', icon: Icons.pan_tool),
+                  JetTab(text: 'Images', icon: Icons.image)
                 ]),
                 Container(
                   height: 30,
                 ),
-                JetTabs.labels(
+                JetTabs.simpleTabs(
                   // size: c.px(100),
                     scheme:
                     JetTabsColorScheme.defaultScheme(JetTheme.of(c).palette)
                         .scheme,
-                    items: [
-                      JetTabEntry(
+                    tabs: [
+                      JetTab(
                           text: 'All',
                           selected: true,
                           icon: Icons.all_inclusive),
-                      JetTabEntry(text: 'Video', icon: Icons.videocam),
-                      JetTabEntry(
+                      JetTab(text: 'Video', icon: Icons.videocam),
+                      JetTab(
                           text: 'Fibonachi Fibonachi', icon: Icons.settings),
-                      JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
-                      JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
-                      JetTabEntry(text: 'Images', icon: Icons.image)
+                      JetTab(text: 'Fibonachi', icon: Icons.settings),
+                      JetTab(text: 'Tools', icon: Icons.pan_tool),
+                      JetTab(text: 'Images', icon: Icons.image)
                     ]),
                 Container(
                   height: 30,
                 ),
-                JetTabs.labels(
+                JetTabs.simpleTabs(
                     // size: c.px(30),
                     scheme:
                         JetTabsColorScheme.blackScheme(JetTheme.of(c).palette)
                             .scheme,
-                    items: [
-                      JetTabEntry(
+                    tabs: [
+                      JetTab(
                           text: 'All',
                           selected: true,
                           icon: Icons.all_inclusive),
-                      JetTabEntry(text: 'Video', icon: Icons.videocam),
-                      JetTabEntry(
+                      JetTab(text: 'Video', icon: Icons.videocam),
+                      JetTab(
                           text: 'Fibonachi Fibonachi', icon: Icons.settings),
-                      JetTabEntry(text: 'Fibonachi', icon: Icons.settings),
-                      JetTabEntry(text: 'Tools', icon: Icons.pan_tool),
-                      JetTabEntry(text: 'Images', icon: Icons.image)
+                      JetTab(text: 'Fibonachi', icon: Icons.settings),
+                      JetTab(text: 'Tools', icon: Icons.pan_tool),
+                      JetTab(text: 'Images', icon: Icons.image)
                     ]),
                 Container(
                   height: 30,

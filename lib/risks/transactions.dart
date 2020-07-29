@@ -20,7 +20,7 @@ class _TransactionsState extends State<Transactions> {
     return Observer(
       builder: (context) {
         return ListView(
-          children: Take.list<TransactionType>(context)
+          children: Take.listOf<TransactionType>(context)
               .items
               .map((e) => _createItem(e, context))
               .toList(),
@@ -32,7 +32,7 @@ class _TransactionsState extends State<Transactions> {
   Widget _createItem(TransactionType transaction, BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Take.list<TransactionType>(context).setSelectedIndex(transaction.uid);
+          Take.listOf<TransactionType>(context).setSelectedIndex(transaction.uid);
         },
         child: Padding(padding: EdgeInsets.all(8), child: Text(transaction.description)));
   }

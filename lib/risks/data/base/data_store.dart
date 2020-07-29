@@ -36,8 +36,11 @@ class ObservableStore<T> extends StatefulWidget {
   final ReadOperationObservable get;
   final UpdateOperationObservable set;
   final CustomOperationObservable run;
+  final WidgetBuilder builder;
 
-  ObservableStore({this.child, this.get, this.set, this.run});
+  ObservableStore({this.child, this.get, this.set, this.run}) : builder = null;
+
+  ObservableStore.builder({this.get, this.set, this.run, this.builder}) : child = null;
 
   @override
   _ObservableStoreState<T> createState() => _ObservableStoreState<T>();
@@ -47,9 +50,13 @@ class ObservableStore<T> extends StatefulWidget {
         context.dependOnInheritedWidgetOfExactType<DataContextInherited<T>>();
     DataStoreList<T> data = inh?.data;
     if (data == null) {
-      throw 'Data store not defined in hierarchy';
+      throw 'Data $T store not defined in hierarchy';
     }
     return data;
+  }
+
+  static ObservableStore createOf<T>({ReadOperationObservable get,UpdateOperationObservable set, CustomOperationObservable run, WidgetBuilder builder}){
+    return ObservableStore<T>.builder(get:get, set:set, run:run, builder:builder);
   }
 }
 
@@ -69,7 +76,7 @@ class _ObservableStoreState<T> extends State<ObservableStore<T>> {
   }
 
   @override
-  Widget build(BuildContext context_out) {
+  Widget build(BuildContext context) {
     return Observer(builder: (context) {
       Map<String, dynamic> props = {};
       int idx = 0;
@@ -87,10 +94,17 @@ class _ObservableStoreState<T> extends State<ObservableStore<T>> {
         store.onRead = readOperation;
         store.setProps(props);
       }
-      return DataContextInherited<T>(
-        data: store,
-        child: widget.child,
-      );
+      if (widget.builder != null) {
+        return DataContextInherited<T>(
+          data: store,
+          child: Observer(builder: (context) {
+            return widget.child ?? widget.builder(context);
+          }),
+        );
+      } else {
+        return DataContextInherited<T>(
+            data: store, child: widget.child ?? widget.builder(context));
+      }
     });
   }
 }
@@ -107,11 +121,15 @@ class ObservableProviders extends StatelessWidget {
 }
 
 class Take {
-  static DataStoreList<T> list<T>(BuildContext context) {
+  static DataStoreList<T> listOf<T>(BuildContext context) {
     return ObservableStore._of<T>(context);
   }
 
-  static T selected<T>(BuildContext context) {
+  static T selectedOf<T>(BuildContext context) {
+    return ObservableStore._of<T>(context).selected;
+  }
+
+  static T valueOf<T>(BuildContext context) {
     return ObservableStore._of<T>(context).selected;
   }
 }

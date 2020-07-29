@@ -30,12 +30,16 @@ class ContractType {
   }
 }
 
-class ContractTypeStore extends ObservableStore<ContractType> {
-  ContractTypeStore.cardContracts({child})
-      : super(
+class ContractTypeProvider {
+
+  static ObservableStore<CardType> cardContracts({child}){
+    return ObservableStore<CardType>(
       child: child,
-      get: (context, observe) {
-        var cId = observe(Take.selected<CardType>(context).value);
-        return () => ContractType.getByCard(cId);
-      });
+        get: (context, observe) {
+          var cId = observe(Take
+              .selectedOf<CardType>(context)
+              .value);
+          return () => ContractType.getByCard(cId);
+        });
+  }
 }

@@ -16,7 +16,7 @@ class _ContractsState extends State<Contracts> {
     return Observer(
       builder: (context) {
         return ListView(
-          children: Take.list<ContractType>(context)
+          children: Take.listOf<ContractType>(context)
               .items
               .map((e) => _createItem(e, context))
               .toList(),
@@ -28,7 +28,7 @@ class _ContractsState extends State<Contracts> {
   Widget _createItem(ContractType transaction, BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Take.list<ContractType>(context).setSelectedIndex(transaction.value);
+          Take.listOf<ContractType>(context).setSelectedIndex(transaction.value);
         },
         child: Padding(padding: EdgeInsets.all(8), child: Text(transaction.name)));
   }

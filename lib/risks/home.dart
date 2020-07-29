@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
             get: (context, props) => () => [InstitutionType(value: 555)].toList(),
             child: ObservableStore<CardType>(
                 get: (context, observe) {
-                  var cId = observe(Take.selected<InstitutionType>(context).value);
+                  var cId = observe(Take.selectedOf<InstitutionType>(context).value);
                   return () {
                     return CardType.getAll(cId);
                   };

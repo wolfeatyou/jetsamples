@@ -1,10 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 
-class SwitchValue extends StatelessWidget{
+class SwitchChild extends StatelessWidget{
   final dynamic value;
   final List<Case> cases;
-  SwitchValue({this.cases, this.value});
+  SwitchChild({this.cases, this.value});
 
   @override
   Widget build(BuildContext context) {

@@ -11,34 +11,6 @@ class TransactionType {
   final double amount;
 
   TransactionType({this.description, this.amount, this.uid});
-
-  static ReadOperationType getByCard(context, observe){
-      var cardCode = observe(Take.selected<CardType>(context).value);
-      var inst = observe(Take.selected<InstitutionType>(context).value);
-      return () {
-        return [
-          TransactionType.fromJson(
-              {"description": "Transaction for card $cardCode - $inst", "amount": 111.0, "uid": 0}),
-          TransactionType.fromJson(
-              {"description": "Transaction for card $cardCode", "amount": 222.0, "uid": 1}),
-        ].toList();
-      };
-  }
-
-  static ReadOperationType getSubTransactions(context, observe) {
-    var cardCode = observe(Take.selected<CardType>(context).value);
-    var tId = observe(Take.selected<TransactionType>(context)?.uid);
-    var institution = observe(Take.selected<InstitutionType>(context)?.value);
-    return () {
-      return [
-        TransactionType.fromJson(
-            {"description": "Sub Transaction for $tId and inst $institution - $cardCode", "amount": 111.0, "uid": 0}),
-        TransactionType.fromJson(
-            {"description": "Sub Transaction for $tId and inst $institution", "amount": 222.0, "uid": 1}),
-      ].toList();
-    };
-  }
-
   static TransactionType fromJson(Map<String, dynamic> json) {
     return TransactionType(
         description: json['description'], amount: json['amount'], uid: json['uid']);
@@ -51,17 +23,50 @@ class TransactionType {
       'uid': card.uid,
     };
   }
+
 }
 
-class TransactionTypeStore extends ObservableStore<TransactionType> {
 
-  TransactionTypeStore.cardTransactions({child})
-      : super(
-      child: child,
-      get: TransactionType.getByCard);
+class TransactionTypeProvider  {
 
-  TransactionTypeStore.subTransactions({child})
-      : super(
+  static ObservableStore<TransactionType> cardTransactions({child}){
+    return ObservableStore<TransactionType>(
       child: child,
-      get: TransactionType.getSubTransactions);
+        get: TransactionTypeProvider.getByCard
+    );
+  }
+
+  static ObservableStore<TransactionType> subTransactions({child}){
+    return ObservableStore<TransactionType>(
+        child: child,
+        get: TransactionTypeProvider.getSubTransactions
+    );
+  }
+
+  static ReadOperationType getByCard(context, observe){
+    var cardCode = observe(Take.selectedOf<CardType>(context).value);
+    var inst = observe(Take.selectedOf<InstitutionType>(context).value);
+    return () {
+      return [
+        TransactionType.fromJson(
+            {"description": "Transaction for card $cardCode - $inst", "amount": 111.0, "uid": 0}),
+        TransactionType.fromJson(
+            {"description": "Transaction for card $cardCode", "amount": 222.0, "uid": 1}),
+      ].toList();
+    };
+  }
+
+  static ReadOperationType getSubTransactions(context, observe) {
+    var cardCode = observe(Take.selectedOf<CardType>(context).value);
+    var tId = observe(Take.selectedOf<TransactionType>(context)?.uid);
+    var institution = observe(Take.selectedOf<InstitutionType>(context)?.value);
+    return () {
+      return [
+        TransactionType.fromJson(
+            {"description": "Sub Transaction for $tId and inst $institution - $cardCode", "amount": 111.0, "uid": 0}),
+        TransactionType.fromJson(
+            {"description": "Sub Transaction for $tId and inst $institution", "amount": 222.0, "uid": 1}),
+      ].toList();
+    };
+  }
 }
