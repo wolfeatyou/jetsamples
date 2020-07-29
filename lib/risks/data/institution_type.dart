@@ -1,5 +1,4 @@
 import 'package:mobx/mobx.dart';
-part 'institution_type.g.dart';
 
 class InstitutionType {
   InstitutionType({int value}) :_value = Observable(value) {

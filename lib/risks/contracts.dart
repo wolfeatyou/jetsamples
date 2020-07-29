@@ -1,7 +1,7 @@
 import 'package:JetSamples/risks/data/contract_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'base/data_store.dart';
+import 'data/base/data_store.dart';
 
 class Contracts extends StatefulWidget {
   @override

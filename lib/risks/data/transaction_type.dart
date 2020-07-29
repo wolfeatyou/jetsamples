@@ -52,3 +52,16 @@ class TransactionType {
     };
   }
 }
+
+class TransactionTypeStore extends ObservableStore<TransactionType> {
+
+  TransactionTypeStore.cardTransactions({child})
+      : super(
+      child: child,
+      get: TransactionType.getByCard);
+
+  TransactionTypeStore.subTransactions({child})
+      : super(
+      child: child,
+      get: TransactionType.getSubTransactions);
+}
