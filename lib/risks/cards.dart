@@ -99,9 +99,9 @@ class _CardsState extends State<Cards> {
                       onSelect: (value, context) {
                         Take.selected<SelectedValueType>(context).setValue.call([value]);
                       },
-                      scheme:
+                     /* scheme:
                           JetTabsColorScheme.defaultScheme(JetTheme.of(context).palette)
-                              .scheme,
+                              .scheme,*/
                       direction: Axis.horizontal,
                       items: [
                         JetTabEntry(
