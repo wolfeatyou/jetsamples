@@ -31,7 +31,7 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    return ObservableStore.createOf<SelectedValueType>(
+    return ObservableProvider.provideValueWithBuilderOf<SelectedValueType>(
         get: (context, o) => () => [SelectedValueType(value: 'transactions')].toList(),
         builder: (context) => Panel.withTop(
               top: JetToolbar(

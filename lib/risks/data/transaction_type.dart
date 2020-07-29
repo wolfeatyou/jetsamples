@@ -29,15 +29,15 @@ class TransactionType {
 
 class TransactionProvider  {
 
-  static ObservableStore<TransactionType> cardTransactions({child}){
-    return ObservableStore<TransactionType>(
+  static ObservableProvider<TransactionType> cardTransactions({child}){
+    return ObservableProvider<TransactionType>(
       child: child,
         get: TransactionProvider.getByCard
     );
   }
 
-  static ObservableStore<TransactionType> subTransactions({child}){
-    return ObservableStore<TransactionType>(
+  static ObservableProvider<TransactionType> subTransactions({child}){
+    return ObservableProvider<TransactionType>(
         child: child,
         get: TransactionProvider.getSubTransactions
     );

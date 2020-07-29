@@ -31,19 +31,19 @@ class DataContextInherited<T> extends InheritedWidget {
   }
 }
 
-class ObservableStore<T> extends StatefulWidget {
+class ObservableProvider<T> extends StatefulWidget {
   final Widget child;
   final ReadOperationObservable get;
   final UpdateOperationObservable set;
   final CustomOperationObservable run;
   final WidgetBuilder builder;
 
-  ObservableStore({this.child, this.get, this.set, this.run}) : builder = null;
+  ObservableProvider({this.child, this.get, this.set, this.run}) : builder = null;
 
-  ObservableStore.builder({this.get, this.set, this.run, this.builder}) : child = null;
+  ObservableProvider.builder({this.get, this.set, this.run, this.builder}) : child = null;
 
   @override
-  _ObservableStoreState<T> createState() => _ObservableStoreState<T>();
+  _ObservableProviderState<T> createState() => _ObservableProviderState<T>();
 
   static DataStoreList<T> _of<T>(BuildContext context) {
     final DataContextInherited inh =
@@ -55,12 +55,19 @@ class ObservableStore<T> extends StatefulWidget {
     return data;
   }
 
-  static ObservableStore createOf<T>({ReadOperationObservable get,UpdateOperationObservable set, CustomOperationObservable run, WidgetBuilder builder}){
-    return ObservableStore<T>.builder(get:get, set:set, run:run, builder:builder);
+  static ObservableProvider provideValueOf<T>({ReadOperationObservable get,UpdateOperationObservable set, CustomOperationObservable run, Widget child}){
+    return ObservableProvider<T>(get:get, set:set, run:run, child:child);
+  }
+  static ObservableProvider provideValueWithBuilderOf<T>({ReadOperationObservable get,UpdateOperationObservable set, CustomOperationObservable run, WidgetBuilder builder}){
+    return ObservableProvider<T>.builder(get:get, set:set, run:run, builder:builder);
+  }
+
+  static ObservableProvider provideListOf<T>({ReadOperationObservable get,UpdateOperationObservable set, CustomOperationObservable run, Widget child}){
+    return ObservableProvider<T>(get:get, set:set, run:run, child: child,);
   }
 }
 
-class _ObservableStoreState<T> extends State<ObservableStore<T>> {
+class _ObservableProviderState<T> extends State<ObservableProvider<T>> {
   DataStoreList<T> store;
 
   @override
@@ -122,14 +129,14 @@ class ObservableProviders extends StatelessWidget {
 
 class Take {
   static DataStoreList<T> listOf<T>(BuildContext context) {
-    return ObservableStore._of<T>(context);
+    return ObservableProvider._of<T>(context);
   }
 
   static T selectedOf<T>(BuildContext context) {
-    return ObservableStore._of<T>(context).selected;
+    return ObservableProvider._of<T>(context).selected;
   }
 
   static T valueOf<T>(BuildContext context) {
-    return ObservableStore._of<T>(context).selected;
+    return ObservableProvider._of<T>(context).selected;
   }
 }

@@ -11,9 +11,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JetApp(
-        child: ObservableStore<InstitutionType>(
+        child: ObservableProvider.provideValueOf<InstitutionType>(
             get: (context, props) => () => [InstitutionType(value: 555)].toList(),
-            child: ObservableStore<CardType>(
+            child: ObservableProvider.provideListOf<CardType>(
                 get: (context, observe) {
                   var cId = observe(Take.selectedOf<InstitutionType>(context).value);
                   return () {
