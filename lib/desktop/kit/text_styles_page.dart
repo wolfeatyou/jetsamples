@@ -89,7 +89,7 @@ class TextStylesPage extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
-                JetTabs.common(
+                JetTabs.labels(
                   // size: c.px(100),
                     scheme:
                     JetTabsColorScheme.defaultScheme(JetTheme.of(c).palette)
@@ -109,7 +109,7 @@ class TextStylesPage extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
-                JetTabs.common(
+                JetTabs.labels(
                     // size: c.px(30),
                     scheme:
                         JetTabsColorScheme.blackScheme(JetTheme.of(c).palette)

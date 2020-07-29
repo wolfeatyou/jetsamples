@@ -95,7 +95,7 @@ class _CardsState extends State<Cards> {
                           iconData: Icons.payment))
                       .toList()),
               body: Panel.withTop(
-                  top: JetTabs.common(
+                  top: JetTabs.labels(
                       onSelect: (value, context) {
                         Take.selected<SelectedValueType>(context).setValue.call([value]);
                       },
