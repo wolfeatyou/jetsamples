@@ -95,7 +95,7 @@ class _CardsState extends State<Cards> {
                   },
                 ),
                 body: Panel.withTop(
-                    top: JetTabs.simpleTabs(
+                    top: Tabs.simpleTabs(
                       direction: Axis.horizontal,
                       tabs: [
                         JetTab(
@@ -118,35 +118,56 @@ class _CardsState extends State<Cards> {
                         Take.valueOf<SelectedValueType>(context).setValue.call([value]);
                       },
                     ),
-                    body: SwitchChild(
-                      value: Take.valueOf<SelectedValueType>(context).value,
-                      cases: [
-                        Case(value: 'transactions', child: _transactionsTab()),
-                        Case(
-                            value: 'contracts',
-                            child: ContractProvider.cardContracts(child: Contracts()))
-                      ],
-                    )),
+                    body:  SwitchChild(
+                          value: Take.valueOf<SelectedValueType>(context)?.value,
+                          cases: [
+                            Case(value: 'transactions', child: _transactionsTab()),
+                            Case(
+                                value: 'contracts',
+                                child: ContractProvider.cardContracts(child: Contracts()))
+                          ],
+                        ),
+                      ),
+
               ),
             ));
   }
 
+  /*Widget _transactionsTab() {
+    return Proxy.providerFor<TransactionType>(
+      name: "cardTransactions",
+      child: Row(children: [
+        Expanded(flex: 1, child: Transactions()),
+        if (!_hideLast)
+          Proxy.providerFor<TransactionType>(
+            name: "subTransactions",
+            child: Expanded(
+                flex: 1,
+                child: Column(children: [
+                  Expanded(flex: 1, child: Transactions()),
+                  Expanded(flex: 1, child: Transactions())
+                ])),
+          )
+      ]),
+    );
+  }*/
+
   Widget _transactionsTab() {
     return TransactionProvider.cardTransactions(
         child: Row(
-        children: [
-          Expanded(flex: 1, child: Transactions()),
-          if (!_hideLast)
-            Expanded(
-                flex: 1,
-                child: TransactionProvider.subTransactions(
-                    child: Column(
-                  children: [
-                    Expanded(flex: 1, child: Transactions()),
-                    Expanded(flex: 1, child: Transactions())
-                  ],
-                ))),
-        ],
+      children: [
+        Expanded(flex: 1, child: Transactions(key: ValueKey(1))),
+        if (!_hideLast)
+          Expanded(
+              flex: 1,
+              child: TransactionProvider.subTransactions(
+                  child: Column(
+                children: [
+                  Expanded(flex: 1, child: Transactions(key: ValueKey(2))),
+                  Expanded(flex: 1, child: Transactions(key: ValueKey(3)))
+                ],
+              ))),
+      ],
     ));
   }
 }

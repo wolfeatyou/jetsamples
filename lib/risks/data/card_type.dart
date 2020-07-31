@@ -1,5 +1,6 @@
-
 import 'package:JetSamples/risks/data/institution_type.dart';
+
+import 'base/data_store.dart';
 
 class CardType {
   final String name;
@@ -24,6 +25,19 @@ class CardType {
     return {
       'name': card.name,
       'value': card.value,
+    };
+  }
+}
+
+class CardProvider {
+  static ObservableProvider<CardType> allCards({child}) {
+    return ObservableProvider<CardType>(child: child, get: CardProvider.getAllCards);
+  }
+
+  static ReadOperationType getAllCards(context, observe) {
+    var cId = observe(Take.selectedOf<InstitutionType>(context)?.value);
+    return () {
+      return CardType.getAll(cId);
     };
   }
 }

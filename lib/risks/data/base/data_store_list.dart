@@ -7,31 +7,33 @@ part 'data_store_list.g.dart';
 class DataStoreList<T> = _DataStoreList<T> with _$DataStoreList;
 
 abstract class _DataStoreList<T> with Store {
-
   ReadOperationType<T> onRead;
   final UpdateOperationType<T> onUpdate;
   final CustomOperationType<T> onCustom;
   final BuildContext context;
 
-
-
   @observable
   Map<String, dynamic> props;
 
-  @action setProps(Map<String, dynamic> np){
+  @action
+  setProps(Map<String, dynamic> np) {
     props = np;
   }
 
   @observable
   int selectedIndex = 0;
 
-  _DataStoreList({this.onRead, this.onUpdate, this.onCustom,  this.props, this.context}) {
-    _items = onRead();
+  @observable
+  bool reload = true;
+
+  _DataStoreList({this.onRead, this.onUpdate, this.onCustom, this.props, this.context}) {
+    // _items = onRead();
 
     reaction((_) => props.values.toList().toString(), (msg) {
       print(props.values.toList().toString());
       if (onRead != null) {
-        _items = onRead();
+        _setReload(true);
+        // _items = onRead();
       }
     });
   }
@@ -41,8 +43,21 @@ abstract class _DataStoreList<T> with Store {
 
   @computed
   List<T> get items {
-
+    if (reload) {
+      Future.delayed(Duration(seconds: 1), () => _setItems(onRead()));
+    }
     return _items;
+  }
+
+  @action
+  _setItems(items) {
+    reload = false;
+    _items = items;
+  }
+
+  @action
+  _setReload(value) {
+    reload = value;
   }
 
   @computed

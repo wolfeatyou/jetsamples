@@ -36,7 +36,7 @@ class _KitDocsIndexState extends State<KitDocsIndex> {
               Expanded(
                 child: Container(),
               ),
-              JetTabs.squareButtonsTabs(
+              Tabs.squareButtonsTabs(
                 size: 60,
                 theme: JetTabStyles(
                   padding: EdgeInsetsDirectional.only(end: 8),

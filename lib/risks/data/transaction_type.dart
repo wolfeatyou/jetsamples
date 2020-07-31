@@ -43,6 +43,7 @@ class TransactionProvider  {
     );
   }
 
+
   static ReadOperationType getByCard(context, observe){
     var cardCode = observe(Take.selectedOf<CardType>(context).value);
     var inst = observe(Take.selectedOf<InstitutionType>(context).value);
@@ -58,6 +59,7 @@ class TransactionProvider  {
 
   static ReadOperationType getSubTransactions(context, observe) {
     var cardCode = observe(Take.selectedOf<CardType>(context).value);
+   // int cardCode = 5;
     var tId = observe(Take.selectedOf<TransactionType>(context)?.uid);
     var institution = observe(Take.selectedOf<InstitutionType>(context)?.value);
     return () {

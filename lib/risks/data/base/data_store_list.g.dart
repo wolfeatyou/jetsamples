@@ -52,6 +52,21 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
     });
   }
 
+  final _$reloadAtom = Atom(name: '_DataStoreList.reload');
+
+  @override
+  bool get reload {
+    _$reloadAtom.reportRead();
+    return super.reload;
+  }
+
+  @override
+  set reload(bool value) {
+    _$reloadAtom.reportWrite(value, super.reload, () {
+      super.reload = value;
+    });
+  }
+
   final _$_itemsAtom = Atom(name: '_DataStoreList._items');
 
   @override
@@ -82,6 +97,28 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
   }
 
   @override
+  dynamic _setItems(dynamic items) {
+    final _$actionInfo = _$_DataStoreListActionController.startAction(
+        name: '_DataStoreList._setItems');
+    try {
+      return super._setItems(items);
+    } finally {
+      _$_DataStoreListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic _setReload(dynamic value) {
+    final _$actionInfo = _$_DataStoreListActionController.startAction(
+        name: '_DataStoreList._setReload');
+    try {
+      return super._setReload(value);
+    } finally {
+      _$_DataStoreListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setSelectedIndex(dynamic value) {
     final _$actionInfo = _$_DataStoreListActionController.startAction(
         name: '_DataStoreList.setSelectedIndex');
@@ -97,6 +134,7 @@ mixin _$DataStoreList<T> on _DataStoreList<T>, Store {
     return '''
 props: ${props},
 selectedIndex: ${selectedIndex},
+reload: ${reload},
 items: ${items},
 selected: ${selected}
     ''';

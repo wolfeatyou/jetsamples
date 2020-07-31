@@ -11,22 +11,63 @@ class Transactions extends StatefulWidget {
   @override
   _TransactionsState createState() => _TransactionsState();
 
-  Transactions();
+  Transactions({Key key}) : super(key: key);
 }
 
 class _TransactionsState extends State<Transactions> {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (context) {
-        return ListView(
-          children: Take.listOf<TransactionType>(context)
-              .items
-              .map((e) => _createItem(e, context))
-              .toList(),
-        );
-      }
-    );
+        key: ValueKey(widget.key),
+        builder: (context) {
+          if (Take.listOf<TransactionType>(context)?.reload == true) {
+            // return Text('loading...');
+          }
+          return Column(
+            children: [
+              Visibility(
+                  visible: Take.listOf<TransactionType>(context)?.reload == true,
+                  child: Expanded(
+                    child: ListView(
+                      children: [
+                        Container(
+                          height:12,
+                          margin: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Container(
+                          height:12,
+                          margin: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Container(
+                          height:12,
+                          margin: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+              Visibility(
+                visible: Take.listOf<TransactionType>(context)?.reload == false,
+                child: Expanded(
+                  child: ListView(
+                    children: Take.listOf<TransactionType>(context)
+                        .items
+                        .map((e) => _createItem(e, context))
+                        .toList(),
+                  ),
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Widget _createItem(TransactionType transaction, BuildContext context) {

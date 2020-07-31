@@ -13,13 +13,6 @@ class Home extends StatelessWidget {
     return JetApp(
         child: ObservableProvider.provideValueOf<InstitutionType>(
             get: (context, props) => () => [InstitutionType(value: 555)].toList(),
-            child: ObservableProvider.provideListOf<CardType>(
-                get: (context, observe) {
-                  var cId = observe(Take.selectedOf<InstitutionType>(context).value);
-                  return () {
-                    return CardType.getAll(cId);
-                  };
-                },
-                child: Cards())));
+            child: CardProvider.allCards(child: Cards())));
   }
 }

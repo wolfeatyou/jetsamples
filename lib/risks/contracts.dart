@@ -15,11 +15,50 @@ class _ContractsState extends State<Contracts> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        return ListView(
-          children: Take.listOf<ContractType>(context)
-              .items
-              .map((e) => _createItem(e, context))
-              .toList(),
+        return Column(
+          children: [
+            Visibility(
+              visible: Take.listOf<ContractType>(context).reload,
+              child: Expanded(
+                child: ListView(
+                  children: [
+                    Container(
+                      height:12,
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Container(
+                      height:12,
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Container(
+                      height:12,
+                      margin: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Visibility(
+              visible: !Take.listOf<ContractType>(context).reload ,
+              child: Expanded(
+                child: ListView(
+                  children: Take.listOf<ContractType>(context)
+                      .items
+                      .map((e) => _createItem(e, context))
+                      .toList(),
+                ),
+              ),
+            ),
+          ],
         );
       }
     );

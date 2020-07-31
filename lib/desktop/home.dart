@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
                             shape: CircleBorder(),
                           ),
                         ),
-                        JetTabs.squareButtonsTabs(
+                        Tabs.squareButtonsTabs(
                           size: 84,
                           direction: Axis.vertical,
                           itemScheme: JetButtonColorScheme.whiteScheme(MaterialJetThemePalette.defaultPalette()).scheme,

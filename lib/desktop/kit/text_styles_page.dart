@@ -75,7 +75,7 @@ class TextStylesPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                JetTabs.squareButtonsTabs(
+                Tabs.squareButtonsTabs(
                     size: c.px(100), tabs: [
                   JetTab(
                       text: 'All', selected: true, icon: Icons.all_inclusive),
@@ -89,7 +89,7 @@ class TextStylesPage extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
-                JetTabs.simpleTabs(
+                Tabs.simpleTabs(
                   // size: c.px(100),
                     scheme:
                     JetTabsColorScheme.defaultScheme(JetTheme.of(c).palette)
@@ -109,7 +109,7 @@ class TextStylesPage extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
-                JetTabs.simpleTabs(
+                Tabs.simpleTabs(
                     // size: c.px(30),
                     scheme:
                         JetTabsColorScheme.blackScheme(JetTheme.of(c).palette)

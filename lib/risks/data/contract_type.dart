@@ -32,8 +32,8 @@ class ContractType {
 
 class ContractProvider {
 
-  static ObservableProvider<CardType> cardContracts({child}){
-    return ObservableProvider<CardType>(
+  static ObservableProvider<ContractType> cardContracts({child}){
+    return ObservableProvider<ContractType>(
       child: child,
         get: (context, observe) {
           var cId = observe(Take
