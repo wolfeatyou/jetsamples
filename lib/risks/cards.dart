@@ -78,7 +78,7 @@ class _CardsState extends State<Cards> {
                     },
                   )
                 ],
-                color: Colors.lightBlue,
+                color: JetTheme.of(context).palette.gray20,
                 size: 70,
               ),
               body: Panel.withLeft(
