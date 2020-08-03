@@ -16,12 +16,19 @@ class TransactionType {
         description: json['description'], amount: json['amount'], uid: json['uid']);
   }
 
-  toJson(TransactionType card) {
+  toJson() {
     return {
-      'description': card.description,
-      'amount': card.amount,
-      'uid': card.uid,
+      'description': this.description,
+      'amount': this.amount,
+      'uid': this.uid,
     };
+  }
+
+  static List<Map<String, dynamic>> toJsonList(List<TransactionType> items){
+    List<Map<String, dynamic>> result = List<Map<String, dynamic>>();
+
+    items.forEach((e) => result.add(e.toJson()));
+    return result;
   }
 
 }

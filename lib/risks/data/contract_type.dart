@@ -22,10 +22,17 @@ class ContractType {
     return ContractType(name: json['name'], value: json['value']);
   }
 
-  toJson(ContractType card) {
+  static List<Map<String, dynamic>> toJsonList(List<ContractType> items){
+    List<Map<String, dynamic>> result = List<Map<String, dynamic>>();
+
+    items.forEach((e) => result.add(e.toJson()));
+    return result;
+  }
+
+  toJson() {
     return {
-      'name': card.name,
-      'value': card.value,
+      'name': this.name,
+      'value': this.value,
     };
   }
 }

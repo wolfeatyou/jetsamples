@@ -118,14 +118,17 @@ class _CardsState extends State<Cards> {
                       Take.valueOf<SimpleSelectionType>(context).value = value;
                     },
                   ),
-                  body: SwitchChild(
-                    value: Take.valueOf<SimpleSelectionType>(context)?.value,
-                    cases: [
-                      Case(value: 'transactions', child: _transactionsTab()),
-                      Case(
-                          value: 'contracts',
-                          child: ContractProvider.cardContracts(child: Contracts()))
-                    ],
+                  body: Padding(
+                    padding: EdgeInsets.only(top:18),
+                    child: SwitchChild(
+                      value: Take.valueOf<SimpleSelectionType>(context)?.value,
+                      cases: [
+                        Case(value: 'transactions', child: _transactionsTab()),
+                        Case(
+                            value: 'contracts',
+                            child: ContractProvider.cardContracts(child: Contracts()))
+                      ],
+                    ),
                   ),
                 ),
               ),

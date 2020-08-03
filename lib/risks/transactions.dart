@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:jetgrid/column.dart';
+import 'package:jetgrid/data_grid.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:mobx/mobx.dart';
 
@@ -55,16 +57,19 @@ class _TransactionsState extends State<Transactions> {
                     ),
                   )),
               Visibility(
-                visible: Take.listOf<TransactionType>(context)?.reload == false,
-                child: Expanded(
-                  child: ListView(
-                    children: Take.listOf<TransactionType>(context)
-                        .items
-                        .map((e) => _createItem(e, context))
-                        .toList(),
+                  visible: !Take.listOf<TransactionType>(context).reload, child: Expanded(
+                flex: 1,
+                child: JetCard.list(
+                  child: JetGridWidget(
+                    items: TransactionType.toJsonList(Take.listOf<TransactionType>(context).items),
+                    columns: [
+                      JetColumn('Description', code: "description", width: 300),
+                      JetColumn('Amount '),
+                      JetColumn('Date'),
+                    ],
                   ),
                 ),
-              ),
+              ))
             ],
           );
         });
