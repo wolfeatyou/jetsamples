@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return JetApp(
-        child: ObservableProvider.provideValueOf<InstitutionType>(
+        child: Provide.valueOf<InstitutionType>(
             value: InstitutionType(555),
             child: CardProvider.allCards(child: Cards())));
   }

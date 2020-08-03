@@ -33,7 +33,7 @@ class ObservableProvider<T> extends StatefulWidget {
   final WidgetBuilder builder;
   final T value;
 
-  ObservableProvider({this.child, this.get, this.set, this.run})
+  ObservableProvider.list({this.child, this.get, this.set, this.run})
       : builder = null,
         value = null;
 
@@ -59,31 +59,9 @@ class ObservableProvider<T> extends StatefulWidget {
         context.dependOnInheritedWidgetOfExactType<ObservableProviderInherited<T>>();
     T data = inh?.data;
     if (data == null) {
-     // throw 'Data $T store not defined in hierarchy';
+      // throw 'Data $T store not defined in hierarchy';
     }
     return data;
-  }
-
-  static ObservableProvider provideValueOf<T>({T value, Widget child}) {
-    return ObservableProvider<T>.value(value: value, child: child);
-  }
-
-  static ObservableProvider provideValueWithBuilderOf<T>(
-      {T value, WidgetBuilder builder}) {
-    return ObservableProvider<T>.builder(value: value, builder: builder);
-  }
-
-  static ObservableProvider provideListOf<T>(
-      {ReadOperationObservable get,
-      UpdateOperationObservable set,
-      CustomOperationObservable run,
-      Widget child}) {
-    return ObservableProvider<T>(
-      get: get,
-      set: set,
-      run: run,
-      child: child,
-    );
   }
 }
 
@@ -142,23 +120,43 @@ class _ObservableProviderState<T> extends State<ObservableProvider<T>> {
   }
 }
 
+class Provide {
+  static ObservableProvider valueOf<T>({T value, Widget child}) {
+    return ObservableProvider<T>.value(value: value, child: child);
+  }
+
+  static ObservableProvider valueBuilderOf<T>({T value, WidgetBuilder builder}) {
+    return ObservableProvider<T>.builder(value: value, builder: builder);
+  }
+
+  static ObservableProvider<T> listOf<T>(
+      {ReadOperationObservable get,
+      UpdateOperationObservable set,
+      CustomOperationObservable run,
+      Widget child}) {
+    return ObservableProvider<T>.list(
+      get: get,
+      set: set,
+      run: run,
+      child: child,
+    );
+  }
+}
+
 class Take {
   static DataStoreList<T> listOf<T>(BuildContext context) {
     return ObservableProvider._of<DataStoreList<T>>(context);
   }
 
   static T valueOf<T>(BuildContext context) {
-
     var el = ObservableProvider._of<DataStoreList<T>>(context);
-    if(el != null){
+    if (el != null) {
       return el.selected;
     }
-    var data =  ObservableProvider._of<T>(context);
+    var data = ObservableProvider._of<T>(context);
     if (data == null) {
-       throw 'Data $T store not defined in hierarchy';
+      throw 'Data $T store not defined in hierarchy';
     }
     return data;
   }
-
-
 }

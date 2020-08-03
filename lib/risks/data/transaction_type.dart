@@ -30,21 +30,21 @@ class TransactionType {
 class TransactionProvider  {
 
   static ObservableProvider<TransactionType> cardTransactions({child}){
-    return ObservableProvider<TransactionType>(
+    return ObservableProvider<TransactionType>.list(
       child: child,
         get: TransactionProvider.getByCard
     );
   }
 
   static ObservableProvider<TransactionType> subTransactions({child}){
-    return ObservableProvider<TransactionType>(
+    return ObservableProvider<TransactionType>.list(
         child: child,
         get: TransactionProvider.getSubTransactions
     );
   }
 
 
-  static ReadOperationType getByCard(context, observe){
+  static ReadOperationType<TransactionType> getByCard(context, observe){
     var cardCode = observe(Take.valueOf<CardType>(context)?.value);
     var inst = observe(Take.valueOf<InstitutionType>(context)?.value);
     return () {

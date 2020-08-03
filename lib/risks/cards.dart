@@ -31,7 +31,7 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    return ObservableProvider.provideValueWithBuilderOf<SimpleSelectionType>(
+    return Provide.valueBuilderOf<SimpleSelectionType>(
         value: SimpleSelectionType('transactions'),
         builder: (context) => Panel.withTop(
               top: JetToolbar(
@@ -131,23 +131,25 @@ class _CardsState extends State<Cards> {
               ),
             ));
   }
+
   Widget _transactionsTab() {
-    return TransactionProvider.cardTransactions(
+    return Provide.listOf<TransactionType>(
+        get: TransactionProvider.getByCard,
         child: Row(
-      children: [
-        Expanded(flex: 1, child: Transactions(key: ValueKey(1))),
-        if (!_hideLast)
-          Expanded(
-              flex: 1,
-              child: TransactionProvider.subTransactions(
-                  child: Column(
-                children: [
-                  Expanded(flex: 1, child: Transactions(key: ValueKey(2))),
-                  Expanded(flex: 1, child: Transactions(key: ValueKey(3)))
-                ],
-              ))),
-      ],
-    ));
+          children: [
+            Expanded(flex: 1, child: Transactions(key: ValueKey(1))),
+            if (!_hideLast)
+              Expanded(
+                  flex: 1,
+                  child: TransactionProvider.subTransactions(
+                      child: Column(
+                    children: [
+                      Expanded(flex: 1, child: Transactions(key: ValueKey(2))),
+                      Expanded(flex: 1, child: Transactions(key: ValueKey(3)))
+                    ],
+                  ))),
+          ],
+        ));
   }
 
 /*Widget _transactionsTab() {

@@ -1,4 +1,5 @@
 import 'package:JetSamples/risks/data/named_types.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'base/observable_provider.dart';
 
@@ -31,10 +32,10 @@ class CardType {
 
 class CardProvider {
   static ObservableProvider<CardType> allCards({child}) {
-    return ObservableProvider<CardType>(child: child, get: CardProvider.getAllCards);
+    return ObservableProvider<CardType>.list(child: child, get: CardProvider.getAllCards);
   }
 
-  static ReadOperationType getAllCards(context, observe) {
+  static ReadOperationType<CardType> getAllCards(BuildContext context, ObserveType observe) {
     var cId = observe(Take.valueOf<InstitutionType>(context)?.value);
     return () {
       return CardType.getAll(cId);
