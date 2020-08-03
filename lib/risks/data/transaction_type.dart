@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-import 'base/data_store.dart';
+import 'base/observable_provider.dart';
 import 'base/data_store_list.dart';
 import 'card_type.dart';
-import 'institution_type.dart';
+import 'named_types.dart';
 
 class TransactionType {
   final int uid;
@@ -45,8 +45,8 @@ class TransactionProvider  {
 
 
   static ReadOperationType getByCard(context, observe){
-    var cardCode = observe(Take.selectedOf<CardType>(context).value);
-    var inst = observe(Take.selectedOf<InstitutionType>(context).value);
+    var cardCode = observe(Take.valueOf<CardType>(context)?.value);
+    var inst = observe(Take.valueOf<InstitutionType>(context)?.value);
     return () {
       return [
         TransactionType.fromJson(
@@ -58,10 +58,10 @@ class TransactionProvider  {
   }
 
   static ReadOperationType getSubTransactions(context, observe) {
-    var cardCode = observe(Take.selectedOf<CardType>(context).value);
+    var cardCode = observe(Take.valueOf<CardType>(context)?.value);
    // int cardCode = 5;
-    var tId = observe(Take.selectedOf<TransactionType>(context)?.uid);
-    var institution = observe(Take.selectedOf<InstitutionType>(context)?.value);
+    var tId = observe(Take.valueOf<TransactionType>(context)?.uid);
+    var institution = observe(Take.valueOf<InstitutionType>(context)?.value);
     return () {
       return [
         TransactionType.fromJson(

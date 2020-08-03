@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
-import 'data_store.dart';
+import 'observable_provider.dart';
 
 part 'data_store_list.g.dart';
 

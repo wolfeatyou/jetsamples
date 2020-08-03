@@ -1,7 +1,7 @@
 import 'card_type.dart';
 import 'contract_type.dart';
-import 'base/data_store.dart';
-import 'package:JetSamples/risks/data/institution_type.dart';
+import 'base/observable_provider.dart';
+import 'package:JetSamples/risks/data/named_types.dart';
 
 class ContractType {
   final String name;
@@ -37,7 +37,7 @@ class ContractProvider {
       child: child,
         get: (context, observe) {
           var cId = observe(Take
-              .selectedOf<CardType>(context)
+              .valueOf<CardType>(context)
               .value);
           return () => ContractType.getByCard(cId);
         });

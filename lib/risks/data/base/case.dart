@@ -8,7 +8,8 @@ class SwitchChild extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    var c = cases.firstWhere((element) => element.value == value);
+    var c = cases.firstWhere((element) => element.value == value, orElse:() => null);
+    if(c == null ) return Container();
     return c.child;
   }
 

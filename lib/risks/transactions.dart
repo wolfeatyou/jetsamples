@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jetkit/jetkit.dart';
 import 'package:mobx/mobx.dart';
 
-import 'data/base/data_store.dart';
+import 'data/base/observable_provider.dart';
 import 'data/base/data_store_list.dart';
 import 'data/transaction_type.dart';
 

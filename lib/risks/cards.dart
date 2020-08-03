@@ -1,13 +1,13 @@
 import 'package:JetSamples/risks/data/contract_type.dart';
 import 'package:JetSamples/risks/contracts.dart';
-import 'package:JetSamples/risks/data/institution_type.dart';
+import 'package:JetSamples/risks/data/named_types.dart';
 import 'package:JetSamples/risks/transactions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jetkit/jetkit.dart';
 import 'data/base/case.dart';
-import 'data/base/data_store.dart';
+import 'data/base/observable_provider.dart';
 import 'data/card_type.dart';
 import 'data/transaction_type.dart';
 
@@ -31,8 +31,8 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    return ObservableProvider.provideValueWithBuilderOf<SelectedValueType>(
-        get: (context, o) => () => [SelectedValueType(value: 'transactions')].toList(),
+    return ObservableProvider.provideValueWithBuilderOf<SimpleSelectionType>(
+        value: SimpleSelectionType('transactions'),
         builder: (context) => Panel.withTop(
               top: JetToolbar(
                 children: [
@@ -50,12 +50,12 @@ class _CardsState extends State<Cards> {
                   FlatButton(
                     child: Text('ok'),
                     onPressed: () {
-                      var val = Take.selectedOf<InstitutionType>(context);
+                      var val = Take.valueOf<InstitutionType>(context);
                       if (val != null) {
                         if (val.value == 555) {
-                          val.setValue.call([333]);
+                          val.value = 333;
                         } else {
-                          val.setValue.call([555]);
+                          val.value = 555;
                         }
                       }
                     },
@@ -63,9 +63,9 @@ class _CardsState extends State<Cards> {
                   FlatButton(
                     child: Text('ok _ no'),
                     onPressed: () {
-                      var val = Take.selectedOf<InstitutionType>(context);
+                      var val = Take.valueOf<InstitutionType>(context);
                       if (val != null) {
-                        val.setValue.call([val.value]);
+                        val.value = val.value;
                       }
                     },
                   ),
@@ -95,63 +95,42 @@ class _CardsState extends State<Cards> {
                   },
                 ),
                 body: Panel.withTop(
-                    top: Tabs.simpleTabs(
-                      direction: Axis.horizontal,
-                      tabs: [
-                        JetTab(
-                            text: "transactions",
-                            value: "transactions",
-                            selected: true,
-                            icon: Icons.transform),
-                        JetTab(
-                            text: "contracts",
-                            value: "contracts",
-                            selected: true,
-                            icon: Icons.store),
-                        JetTab(
-                            text: "addresses",
-                            value: "addresses",
-                            selected: true,
-                            icon: Icons.home)
-                      ],
-                      onSelect: (value, context) {
-                        Take.valueOf<SelectedValueType>(context).setValue.call([value]);
-                      },
-                    ),
-                    body:  SwitchChild(
-                          value: Take.valueOf<SelectedValueType>(context)?.value,
-                          cases: [
-                            Case(value: 'transactions', child: _transactionsTab()),
-                            Case(
-                                value: 'contracts',
-                                child: ContractProvider.cardContracts(child: Contracts()))
-                          ],
-                        ),
-                      ),
-
+                  top: Tabs.simpleTabs(
+                    direction: Axis.horizontal,
+                    tabs: [
+                      JetTab(
+                          text: "transactions",
+                          value: "transactions",
+                          selected: true,
+                          icon: Icons.transform),
+                      JetTab(
+                          text: "contracts",
+                          value: "contracts",
+                          selected: true,
+                          icon: Icons.store),
+                      JetTab(
+                          text: "addresses",
+                          value: "addresses",
+                          selected: true,
+                          icon: Icons.home)
+                    ],
+                    onSelect: (value, context) {
+                      Take.valueOf<SimpleSelectionType>(context).value = value;
+                    },
+                  ),
+                  body: SwitchChild(
+                    value: Take.valueOf<SimpleSelectionType>(context)?.value,
+                    cases: [
+                      Case(value: 'transactions', child: _transactionsTab()),
+                      Case(
+                          value: 'contracts',
+                          child: ContractProvider.cardContracts(child: Contracts()))
+                    ],
+                  ),
+                ),
               ),
             ));
   }
-
-  /*Widget _transactionsTab() {
-    return Proxy.providerFor<TransactionType>(
-      name: "cardTransactions",
-      child: Row(children: [
-        Expanded(flex: 1, child: Transactions()),
-        if (!_hideLast)
-          Proxy.providerFor<TransactionType>(
-            name: "subTransactions",
-            child: Expanded(
-                flex: 1,
-                child: Column(children: [
-                  Expanded(flex: 1, child: Transactions()),
-                  Expanded(flex: 1, child: Transactions())
-                ])),
-          )
-      ]),
-    );
-  }*/
-
   Widget _transactionsTab() {
     return TransactionProvider.cardTransactions(
         child: Row(
@@ -170,4 +149,23 @@ class _CardsState extends State<Cards> {
       ],
     ));
   }
+
+/*Widget _transactionsTab() {
+    return Proxy.providerFor<TransactionType>(
+      name: "cardTransactions",
+      child: Row(children: [
+        Expanded(flex: 1, child: Transactions()),
+        if (!_hideLast)
+          Proxy.providerFor<TransactionType>(
+            name: "subTransactions",
+            child: Expanded(
+                flex: 1,
+                child: Column(children: [
+                  Expanded(flex: 1, child: Transactions()),
+                  Expanded(flex: 1, child: Transactions())
+                ])),
+          )
+      ]),
+    );
+  }*/
 }

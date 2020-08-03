@@ -1,6 +1,6 @@
-import 'package:JetSamples/risks/data/institution_type.dart';
+import 'package:JetSamples/risks/data/named_types.dart';
 
-import 'base/data_store.dart';
+import 'base/observable_provider.dart';
 
 class CardType {
   final String name;
@@ -35,7 +35,7 @@ class CardProvider {
   }
 
   static ReadOperationType getAllCards(context, observe) {
-    var cId = observe(Take.selectedOf<InstitutionType>(context)?.value);
+    var cId = observe(Take.valueOf<InstitutionType>(context)?.value);
     return () {
       return CardType.getAll(cId);
     };
