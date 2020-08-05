@@ -13,6 +13,8 @@ class Home extends StatelessWidget {
     return JetApp(
         child: Provide.valueOf<InstitutionType>(
             value: InstitutionType(555),
-            child: CardProvider.allCards(child: Cards())));
+            child: CardProvider.allCards(child: Container(
+                color: Colors.white,
+                child: Cards()))));
   }
 }

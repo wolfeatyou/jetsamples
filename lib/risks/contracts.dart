@@ -18,12 +18,16 @@ class _ContractsState extends State<Contracts> {
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          JetText.headerMedium('Card contracts'),
+          Container(
+              height: 16),
           Visibility(
             visible: Take.listOf<ContractType>(context).reload,
             child: Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(0),
                 child: ListView(
                   children:
                     List.generate(50, (index) =>  Container(
@@ -40,19 +44,17 @@ class _ContractsState extends State<Contracts> {
           Visibility(
               visible: !Take.listOf<ContractType>(context).reload, child: Expanded(
             flex: 1,
-                child: JetCard.list(
-                  child: JetGridWidget(
-                    items: ContractType.toJsonList(Take.listOf<ContractType>(context).items),
+                child: JetGridWidget(
+                  items: ContractType.toJsonList(Take.listOf<ContractType>(context).items),
             columns: [
-                  JetColumn('Type of Actions', code: "name"),
-                  JetColumn('Last Purchased ',width: 200),
-                  JetColumn('Value One'),
-                  JetColumn('Value Two', width: 250),
-                  JetColumn('From'),
-                  JetColumn('Quantity')
+                JetColumn('Type of Actions', code: "name"),
+                JetColumn('Last Purchased ',width: 200),
+                JetColumn('Value One'),
+                JetColumn('Value Two', width: 250),
+                JetColumn('From'),
+                JetColumn('Quantity')
             ],
           ),
-                ),
               ))
         ],
       );

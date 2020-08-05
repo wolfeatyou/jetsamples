@@ -26,7 +26,10 @@ class _TransactionsState extends State<Transactions> {
             // return Text('loading...');
           }
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              JetText.headerMedium('Last transactions'),
+              Container(height: 16),
               Visibility(
                   visible: Take.listOf<TransactionType>(context)?.reload == true,
                   child: Expanded(
@@ -59,15 +62,13 @@ class _TransactionsState extends State<Transactions> {
               Visibility(
                   visible: !Take.listOf<TransactionType>(context).reload, child: Expanded(
                 flex: 1,
-                child: JetCard.list(
-                  child: JetGridWidget(
-                    items: TransactionType.toJsonList(Take.listOf<TransactionType>(context).items),
-                    columns: [
-                      JetColumn('Description', code: "description", width: 300),
-                      JetColumn('Amount '),
-                      JetColumn('Date'),
-                    ],
-                  ),
+                child: JetGridWidget(
+                  items: TransactionType.toJsonList(Take.listOf<TransactionType>(context).items),
+                  columns: [
+                    JetColumn('Description', code: "description", width: 300),
+                    JetColumn('Amount '),
+                    JetColumn('Date'),
+                  ],
                 ),
               ))
             ],
